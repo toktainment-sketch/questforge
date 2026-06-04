@@ -1,0 +1,89 @@
+ACME CLOUD TECHNOLOGIES — SECURITY OVERVIEW DOCUMENT
+Last Updated: May 2026
+Classification: External — For Prospect Review
+
+1. COMPANY OVERVIEW
+Acme Cloud Technologies is a B2B SaaS company providing workforce analytics software to enterprise clients. Founded in 2019, headquartered in Austin, TX with a remote engineering team across the US and UK. 85 employees. SOC 2 Type II certified since 2023. ISO 27001 certified since 2024.
+
+2. INFRASTRUCTURE AND HOSTING
+All production systems are hosted on Amazon Web Services (AWS) in the us-east-1 and eu-west-1 regions. We use AWS GovCloud for our FedRAMP-authorized deployments. Infrastructure is managed using Terraform with version-controlled configurations. All environments (development, staging, production) are logically separated using dedicated AWS accounts.
+
+3. DATA ENCRYPTION
+Data at rest: AES-256 encryption via AWS KMS with customer-managed keys available for Enterprise plan customers.
+Data in transit: TLS 1.2 minimum enforced on all endpoints. TLS 1.3 supported and preferred.
+Database encryption: Amazon RDS with encrypted storage volumes and encrypted automated backups.
+Key management: AWS KMS with automatic annual key rotation. Hardware security modules (HSMs) available for customers requiring FIPS 140-2 Level 3 compliance.
+
+4. ACCESS CONTROL
+Role-based access control (RBAC) implemented across all systems. Principle of least privilege enforced. All employee access requires multi-factor authentication (MFA) via Okta. Privileged access to production systems requires additional approval via PagerDuty and is logged in our SIEM.
+Access reviews conducted quarterly by the Security team. Terminated employee access is revoked within 4 hours via automated Okta deprovisioning.
+Customer SSO: SAML 2.0 and OIDC supported. SCIM provisioning available for Enterprise plan.
+
+5. VULNERABILITY MANAGEMENT
+Annual third-party penetration testing conducted by NCC Group. Last test: March 2026 — no critical findings, 2 medium findings remediated within 30 days.
+Continuous vulnerability scanning using Qualys for infrastructure and Snyk for application dependencies.
+Bug bounty program operated through HackerOne since 2024.
+Critical vulnerabilities patched within 24 hours. High within 7 days. Medium within 30 days.
+
+6. INCIDENT RESPONSE
+Documented incident response plan reviewed and tested annually. Tabletop exercises conducted quarterly.
+Incident classification: P1 (critical), P2 (major), P3 (minor), P4 (informational).
+P1 incidents: customer notification within 24 hours. Post-incident review within 5 business days.
+Security incidents in the past 12 months: 0 confirmed breaches. 2 P3 incidents investigated and resolved.
+
+7. BUSINESS CONTINUITY AND DISASTER RECOVERY
+RPO (Recovery Point Objective): 1 hour for all production data.
+RTO (Recovery Time Objective): 4 hours for primary services.
+Database backups: automated daily with 30-day retention. Point-in-time recovery available.
+Multi-AZ deployment for all production services. Cross-region failover tested quarterly.
+Annual business continuity plan review and DR test.
+
+8. EMPLOYEE SECURITY
+Background checks conducted on all employees prior to start date (criminal, education, employment verification).
+Security awareness training required for all employees within 30 days of hire and annually thereafter. Training provided via KnowBe4.
+Phishing simulations conducted monthly. Current click rate: under 3%.
+All employee laptops managed via Jamf (macOS) with full disk encryption, automatic updates, and endpoint detection (CrowdStrike Falcon).
+
+9. COMPLIANCE AND CERTIFICATIONS
+- SOC 2 Type II (audited by A-LIGN, report available under NDA)
+- ISO 27001:2022 (certified by BSI)
+- GDPR compliant (DPA available on request)
+- CCPA compliant
+- HIPAA compliant (BAA available for healthcare customers)
+- FedRAMP Authorized (Moderate baseline) — in progress, expected Q4 2026
+
+10. DATA PRIVACY AND RETENTION
+Customer data ownership: customers own all their data at all times.
+Data retention: customer data retained for the duration of the contract plus 90 days. Deletion upon request within 30 days.
+Data residency: EU customers can choose EU-only data residency (eu-west-1).
+Subprocessors: listed at acmecloud.com/subprocessors, updated with 30-day advance notice.
+Data Processing Agreement (DPA) based on Standard Contractual Clauses (SCCs) available.
+
+11. NETWORK SECURITY
+Web Application Firewall (WAF) via AWS WAF on all public endpoints.
+DDoS protection via AWS Shield Advanced.
+Network segmentation between application tiers using VPC security groups and NACLs.
+No direct SSH access to production servers. All access via AWS Systems Manager Session Manager with full audit logging.
+IDS/IPS monitoring via CrowdStrike Falcon and AWS GuardDuty.
+
+12. LOGGING AND MONITORING
+Centralized logging via Datadog. Logs retained for 12 months.
+Security Information and Event Management (SIEM) via Datadog Security Monitoring.
+Automated alerting on suspicious activities: failed login attempts, privilege escalation, unusual API patterns.
+Audit logs immutable and tamper-evident.
+
+13. VENDOR MANAGEMENT
+Third-party vendor risk assessments conducted annually for all critical vendors.
+Vendors classified by tier: Tier 1 (critical), Tier 2 (important), Tier 3 (standard).
+Current critical vendors: AWS, Okta, Datadog, Stripe, Snowflake, CrowdStrike.
+Vendor security questionnaires and SOC 2 reports reviewed annually.
+
+14. CHANGE MANAGEMENT
+All code changes require peer review via GitHub pull requests.
+Automated CI/CD pipeline with security scanning (SAST via Semgrep, SCA via Snyk, container scanning via Trivy).
+Production deployments require approval from Engineering Lead.
+Rollback capability within 15 minutes for all deployments.
+
+15. PHYSICAL SECURITY
+No company-operated data centers. All infrastructure hosted in AWS data centers which maintain SOC 2, ISO 27001, and FedRAMP certifications.
+Office access (Austin HQ): keycard entry, visitor logging, clean desk policy.

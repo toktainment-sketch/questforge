@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuestForge — Security Questionnaire Completion</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+
+    header { padding: 24px 40px; border-bottom: 1px solid #1e2530; display: flex; align-items: center; gap: 12px; }
+    header h1 { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    header span { font-size: 0.8rem; background: #1a3a5c; color: #60a5fa; padding: 3px 10px; border-radius: 20px; }
+
+    main { max-width: 780px; margin: 48px auto; padding: 0 24px; }
+
+    .hero { text-align: center; margin-bottom: 48px; }
+    .hero h2 { font-size: 2rem; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+    .hero p { color: #94a3b8; font-size: 1rem; line-height: 1.6; }
+
+    .card { background: #161b27; border: 1px solid #1e2530; border-radius: 12px; padding: 32px; margin-bottom: 24px; }
+    .card h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .badge { background: #1a3a5c; color: #60a5fa; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; }
+
+    label { display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 6px; font-weight: 500; }
+    input[type="text"] { width: 100%; padding: 10px 14px; background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; font-size: 0.95rem; margin-bottom: 20px; outline: none; transition: border-color 0.2s; }
+    input[type="text"]:focus { border-color: #3b82f6; }
+
+    .upload-zone { border: 2px dashed #2d3748; border-radius: 10px; padding: 28px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px; }
+    .upload-zone:hover, .upload-zone.drag { border-color: #3b82f6; background: #0d1929; }
+    .upload-zone p { color: #64748b; font-size: 0.9rem; margin-top: 8px; }
+    .upload-zone .icon { font-size: 2rem; }
+    .upload-zone input { display: none; }
+    .file-list { margin-top: 10px; font-size: 0.8rem; color: #60a5fa; }
+
+    button[type="submit"] { width: 100%; padding: 14px; background: #3b82f6; color: #fff; font-size: 1rem; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
+    button[type="submit"]:hover { background: #2563eb; }
+    button[type="submit"]:disabled { background: #1e3a5c; color: #4a6fa5; cursor: not-allowed; }
+
+    #progress-section { display: none; }
+    .progress-bar-wrap { background: #1e2530; border-radius: 100px; height: 8px; margin: 16px 0; }
+    .progress-bar { background: #3b82f6; height: 8px; border-radius: 100px; transition: width 0.4s ease; }
+    .progress-label { font-size: 0.85rem; color: #60a5fa; }
+
+    #results-section { display: none; }
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat { background: #0f1117; border: 1px solid #1e2530; border-radius: 10px; padding: 20px; text-align: center; }
+    .stat .number { font-size: 2rem; font-weight: 800; color: #3b82f6; }
+    .stat .label { font-size: 0.75rem; color: #64748b; margin-top: 4px; }
+
+    .flagged-list { max-height: 300px; overflow-y: auto; }
+    .flagged-item { background: #0f1117; border-left: 3px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 10px; font-size: 0.85rem; }
+    .flagged-item .q { color: #e2e8f0; margin-bottom: 4px; }
+    .flagged-item .reason { color: #f59e0b; font-size: 0.75rem; }
+
+    .download-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .dl-btn { padding: 10px 20px; background: #1a3a5c; color: #60a5fa; border: 1px solid #2d4a6e; border-radius: 8px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+    .dl-btn:hover { background: #234e7a; color: #93c5fd; }
+
+    .cover-letter { background: #0f1117; border: 1px solid #1e2530; border-radius: 8px; padding: 20px; font-size: 0.85rem; color: #94a3b8; line-height: 1.7; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
+
+    .error-msg { background: #2d1515; border: 1px solid #7f1d1d; color: #fca5a5; border-radius: 8px; padding: 16px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ QuestForge</h1>
+  <span>Security Questionnaire AI</span>
+</header>
+
+<main>
+  <div class="hero">
+    <h2>Complete security questionnaires<br/>in hours, not weeks.</h2>
+    <p>Upload your company's security docs + the questionnaire.<br/>Get a complete, reviewed draft back in minutes.</p>
+  </div>
+
+  <form id="uploadForm">
+    <div class="card">
+      <h3>1. Company Info</h3>
+      <label>Your company name</label>
+      <input type="text" id="companyName" placeholder="e.g. Acme Technologies Inc." required />
+      <label>Who sent the questionnaire? (prospect / customer name)</label>
+      <input type="text" id="senderName" placeholder="e.g. Enterprise Corp" />
+    </div>
+
+    <div class="card">
+      <h3>2. Upload Questionnaire <span class="badge">Excel, Word, or PDF</span></h3>
+      <div class="upload-zone" id="qZone" onclick="document.getElementById('qFile').click()">
+        <div class="icon">📋</div>
+        <strong>Click to upload questionnaire</strong>
+        <p>SIG, CAIQ, custom spreadsheet — any format</p>
+        <div class="file-list" id="qFileList"></div>
+        <input type="file" id="qFile" accept=".xlsx,.xls,.docx,.doc,.pdf,.txt" />
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>3. Upload Your Security Documents <span class="badge">Up to 10 files</span></h3>
+      <div class="upload-zone" id="docsZone" onclick="document.getElementById('docsFiles').click()">
+        <div class="icon">🔒</div>
+        <strong>Click to upload security docs</strong>
+        <p>SOC 2 report, pen test, ISO cert, privacy policy, previous questionnaires</p>
+        <div class="file-list" id="docsFileList"></div>
+        <input type="file" id="docsFiles" accept=".pdf,.docx,.doc,.txt,.xlsx" multiple />
+      </div>
+    </div>
+
+    <button type="submit" id="submitBtn">Generate Completed Questionnaire →</button>
+  </form>
+
+  <div class="card" id="progress-section">
+    <h3>Processing...</h3>
+    <div class="progress-label" id="progressLabel">Starting...</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width: 0%"></div></div>
+    <p style="font-size:0.8rem; color:#4a5568; margin-top:8px;">Do not close this page.</p>
+  </div>
+
+  <div id="results-section">
+    <div class="card">
+      <h3>✅ Questionnaire Complete</h3>
+      <div class="stat-grid" id="statGrid"></div>
+      <div class="download-links" id="downloadLinks"></div>
+    </div>
+
+    <div class="card" id="coverLetterCard" style="display:none">
+      <h3>📄 Cover Letter (ready to copy)</h3>
+      <div class="cover-letter" id="coverLetterText"></div>
+    </div>
+
+    <div class="card" id="flaggedCard" style="display:none">
+      <h3>⚠️ Items Flagged for Human Review</h3>
+      <p style="font-size:0.8rem;color:#64748b;margin-bottom:16px;">Review these before submitting. Legal/contractual questions are highlighted.</p>
+      <div class="flagged-list" id="flaggedList"></div>
+    </div>
+  </div>
+
+  <div id="errorSection" style="display:none">
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+</main>
+
+<script>
+  // File preview
+  document.getElementById('qFile').addEventListener('change', e => {
+    document.getElementById('qFileList').textContent = e.target.files[0]?.name || '';
+  });
+  document.getElementById('docsFiles').addEventListener('change', e => {
+    const names = Array.from(e.target.files).map(f => f.name).join(', ');
+    document.getElementById('docsFileList').textContent = names;
+  });
+
+  // Form submit
+  document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const qFile = document.getElementById('qFile').files[0];
+    const docFiles = document.getElementById('docsFiles').files;
+    const companyName = document.getElementById('companyName').value.trim();
+    const senderName = document.getElementById('senderName').value.trim();
+
+    if (!qFile || docFiles.length === 0) {
+      alert('Please upload both the questionnaire and at least one security document.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('questionnaire', qFile);
+    Array.from(docFiles).forEach(f => formData.append('documents', f));
+    formData.append('companyName', companyName);
+    formData.append('senderName', senderName || 'the prospect');
+
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('uploadForm').style.display = 'none';
+    document.getElementById('progress-section').style.display = 'block';
+    document.getElementById('errorSection').style.display = 'none';
+
+    try {
+      const res = await fetch('/api/process', { method: 'POST', body: formData });
+      const { jobId, error } = await res.json();
+      if (error) throw new Error(error);
+      pollStatus(jobId);
+    } catch (err) {
+      showError(err.message);
+    }
+  });
+
+  function pollStatus(jobId) {
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/status/${jobId}`);
+        const status = await res.json();
+
+        document.getElementById('progressLabel').textContent = status.stage || 'Processing...';
+        document.getElementById('progressBar').style.width = `${status.percent || 0}%`;
+
+        if (status.done) {
+          clearInterval(interval);
+          showResults(status);
+        }
+        if (status.error) {
+          clearInterval(interval);
+          showError(status.error);
+        }
+      } catch (err) {
+        clearInterval(interval);
+        showError('Lost connection to server. Please refresh and try again.');
+      }
+    }, 1500);
+  }
+
+  function showResults(status) {
+    document.getElementById('progress-section').style.display = 'none';
+    document.getElementById('results-section').style.display = 'block';
+
+    const r = status.report;
+    document.getElementById('statGrid').innerHTML = `
+      <div class="stat"><div class="number">${r.total}</div><div class="label">Total Questions</div></div>
+      <div class="stat"><div class="number" style="color:#10b981">${r.readyPercent}%</div><div class="label">Auto-Answered</div></div>
+      <div class="stat"><div class="number" style="color:#f59e0b">${r.needsReview}</div><div class="label">Need Review</div></div>
+    `;
+
+    const links = [];
+    if (status.files.summary) links.push(`<a class="dl-btn" href="${status.files.summary}" download>📊 Download Report</a>`);
+    if (status.files.completedQ) links.push(`<a class="dl-btn" href="${status.files.completedQ}" download>📋 Download Completed Questionnaire</a>`);
+    document.getElementById('downloadLinks').innerHTML = links.join('');
+
+    if (status.coverLetter) {
+      document.getElementById('coverLetterText').textContent = status.coverLetter;
+      document.getElementById('coverLetterCard').style.display = 'block';
+    }
+  }
+
+  function showError(msg) {
+    document.getElementById('progress-section').style.display = 'none';
+    document.getElementById('uploadForm').style.display = 'block';
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('errorSection').style.display = 'block';
+    document.getElementById('errorMsg').textContent = `Error: ${msg}`;
+  }
+</script>
+</body>
+</html>
