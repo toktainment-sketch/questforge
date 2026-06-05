@@ -1,13 +1,13 @@
-# QuestForge — Cold Email Campaign (3-Email Sequence)
+# QuestForge, Cold Email Campaign (3-Email Sequence)
 
-**Target:** VP Sales / Head of Revenue / CEO at B2B SaaS companies (20–300 employees, US/UK/Canada)
+**Target:** VP Sales / Head of Revenue / CEO at B2B SaaS companies (20-300 employees, US/UK/Canada)
 **Sending from:** Your QuestForge Gmail
 **Cadence:** Day 1 → Day 4 → Day 8
 **Goal:** Book a 15-minute discovery call or get them to submit their next questionnaire
 
 ---
 
-## EMAIL 1 — The Opener (Day 1)
+## EMAIL 1, The Opener (Day 1)
 
 **Subject:** Your next enterprise deal is stuck in security review right now
 
@@ -17,7 +17,7 @@ Security questionnaires are the #1 reason enterprise SaaS deals stall. A 300-que
 
 We complete security questionnaires in 4 hours using your existing SOC 2 and security documentation.
 
-You get a fully drafted questionnaire — 85%+ complete — that your team reviews and submits. Not 4 weeks. Hours.
+You get a fully drafted questionnaire, 85%+ complete, that your team reviews and submits. Not 4 weeks. Hours.
 
 First questionnaire: $1,200.
 
@@ -29,7 +29,7 @@ QuestForge
 
 ---
 
-## EMAIL 2 — The Follow-Up (Day 4, if no reply)
+## EMAIL 2, The Follow-Up (Day 4, if no reply)
 
 **Subject:** Quick question about {{companyName}}'s security review process
 
@@ -39,7 +39,7 @@ When a prospect sends your team a 400-question security questionnaire, what happ
 
 Does it go to your security team and sit for 3 weeks while the deal goes cold? Or does your CTO end up answering it at midnight?
 
-We built QuestForge specifically for this problem — AI that reads your security docs and drafts the complete questionnaire response in hours.
+We built QuestForge specifically for this problem, AI that reads your security docs and drafts the complete questionnaire response in hours.
 
 Curious if this is relevant to how {{companyName}} handles enterprise deals right now.
 
@@ -47,9 +47,9 @@ Curious if this is relevant to how {{companyName}} handles enterprise deals righ
 
 ---
 
-## EMAIL 3 — The Proof (Day 8, if no reply)
+## EMAIL 3, The Proof (Day 8, if no reply)
 
-**Subject:** Sample output attached — completed SIG questionnaire
+**Subject:** Sample output attached, completed SIG questionnaire
 
 Hi {{firstName}},
 
@@ -63,7 +63,7 @@ The key difference from doing it manually:
 - Confidence score on every answer so your team knows what to review
 - Cover letter included
 
-If your team handles more than 3 security questionnaires per quarter, the math is straightforward — one faster deal close pays for a year of this.
+If your team handles more than 3 security questionnaires per quarter, the math is straightforward, one faster deal close pays for a year of this.
 
 Happy to run your next questionnaire as a pilot. $1,200, 24-hour turnaround.
 
@@ -76,8 +76,8 @@ QuestForge
 
 - Always reference the prospect's company name
 - If you can find their product on their website, mention the buyer they sell to: "Since {{companyName}} sells to enterprise healthcare buyers, I'm guessing security questionnaires are a regular part of your deal cycle"
-- If they recently raised a Series A/B/C, mention it: "Congrats on the Series B — as you push upmarket, the security questionnaire volume is about to spike"
-- If they have a Trust Center or Security page on their website, reference it: "I saw your trust center — great foundation. But when a prospect sends a custom 400-question spreadsheet, that page doesn't fill it in for them."
+- If they recently raised a Series A/B/C, mention it: "Congrats on the Series B, as you push upmarket, the security questionnaire volume is about to spike"
+- If they have a Trust Center or Security page on their website, reference it: "I saw your trust center, great foundation. But when a prospect sends a custom 400-question spreadsheet, that page doesn't fill it in for them."
 
 ---
 

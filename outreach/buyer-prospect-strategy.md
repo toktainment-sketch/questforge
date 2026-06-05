@@ -1,10 +1,10 @@
-# QuestForge — First 50 Buyer Prospect List Strategy
+# QuestForge, First 50 Buyer Prospect List Strategy
 
 ## IDEAL CUSTOMER PROFILE (ICP)
 
 **Title:** VP Sales, Head of Revenue, CRO, CEO, CISO
-**Company size:** 20–300 employees
-**Revenue:** $2M–$50M ARR
+**Company size:** 20-300 employees
+**Revenue:** $2M-$50M ARR
 **Type:** B2B SaaS selling to enterprise, healthcare, fintech, or government buyers
 **Stage:** Series A to Series C (have enterprise deals in pipeline, feel the questionnaire pain)
 **Geography:** United States, United Kingdom, Canada
@@ -16,19 +16,19 @@
 
 ### Search Filters
 - **Title:** "VP Sales" OR "Head of Revenue" OR "Chief Revenue Officer" OR "CEO" OR "CISO"
-- **Company headcount:** 20–300
+- **Company headcount:** 20-300
 - **Industry:** Computer Software, Internet, Information Technology, SaaS
 - **Geography:** United States, United Kingdom, Canada
 - **Keywords in company description:** "enterprise" OR "B2B" OR "SOC 2"
 
 ### Priority Verticals (highest questionnaire volume)
-1. **HR Tech / Payroll** — sell to enterprises with strict compliance requirements
-2. **Healthtech** — HIPAA buyers demand extensive security questionnaires
-3. **Fintech** — regulated buyers, longest questionnaires
-4. **Legal Tech** — law firm procurement is questionnaire-heavy
-5. **GovTech** — government procurement = mandatory questionnaires
-6. **DevTools / Infrastructure** — enterprise engineering teams require security review
-7. **EdTech** — university and school district procurement requires HECVAT questionnaires
+1. **HR Tech / Payroll**, sell to enterprises with strict compliance requirements
+2. **Healthtech**, HIPAA buyers demand extensive security questionnaires
+3. **Fintech**, regulated buyers, longest questionnaires
+4. **Legal Tech**, law firm procurement is questionnaire-heavy
+5. **GovTech**, government procurement = mandatory questionnaires
+6. **DevTools / Infrastructure**, enterprise engineering teams require security review
+7. **EdTech**, university and school district procurement requires HECVAT questionnaires
 
 ### How to Search
 1. Go to LinkedIn Sales Navigator → Lead Filters
@@ -51,7 +51,7 @@ Post content about security questionnaire pain → collect inbound interest
 
 ### Capture
 - DM everyone who likes, comments, or shares within 24 hours
-- Add to prospect list with note: "inbound — engaged with [post topic]"
+- Add to prospect list with note: "inbound, engaged with [post topic]"
 
 ---
 
@@ -70,7 +70,7 @@ Search Google for:
 1. Visit the company's security page
 2. Note what certifications they have
 3. Find VP Sales or CEO on LinkedIn
-4. Reference their trust center in outreach: "I saw your trust center — great foundation. But when a prospect sends a custom questionnaire, that page doesn't fill it in."
+4. Reference their trust center in outreach: "I saw your trust center, great foundation. But when a prospect sends a custom questionnaire, that page doesn't fill it in."
 
 ---
 
@@ -89,20 +89,20 @@ Search LinkedIn Jobs or Indeed for:
 ### What to Do
 1. Identify the company posting the role
 2. Find the VP Sales or CISO
-3. Outreach angle: "I noticed you're hiring a [role] to handle security questionnaires. We can eliminate 80% of that workload with AI — worth a conversation before you commit to a $90K hire?"
+3. Outreach angle: "I noticed you're hiring a [role] to handle security questionnaires. We can eliminate 80% of that workload with AI, worth a conversation before you commit to a $90K hire?"
 
 ---
 
 ## CHANNEL 5: Community and Forum Prospecting (5 targets)
 
 ### Where to Search
-- **r/SaaS** — search for "security questionnaire" posts
-- **r/startups** — search for "enterprise sales" + "security"
-- **r/netsec** — search for "vendor questionnaire"
-- **SaaStr Community** — enterprise SaaS focus
-- **Pavilion** (formerly Revenue Collective) — revenue leader community
-- **eCommerce Fuel** — for the ChargebackShield angle later
-- **Lenny's Newsletter Slack** — product and growth leaders
+- **r/SaaS**, search for "security questionnaire" posts
+- **r/startups**, search for "enterprise sales" + "security"
+- **r/netsec**, search for "vendor questionnaire"
+- **SaaStr Community**, enterprise SaaS focus
+- **Pavilion** (formerly Revenue Collective), revenue leader community
+- **eCommerce Fuel**, for the ChargebackShield angle later
+- **Lenny's Newsletter Slack**, product and growth leaders
 
 ### How to Engage
 1. Reply with genuine value first (never pitch in the first comment)
@@ -152,18 +152,18 @@ Create a Google Sheet with these columns:
 | Metric | Goal |
 |---|---|
 | Total outreach contacts | 50 |
-| Expected reply rate | 15–25% |
-| Expected replies | 8–12 |
-| Discovery calls booked | 4–6 |
-| Pilot commitments | 2–3 |
+| Expected reply rate | 15-25% |
+| Expected replies | 8-12 |
+| Discovery calls booked | 4-6 |
+| Pilot commitments | 2-3 |
 | First revenue | Within 14 days |
 
 ---
 
 ## TOOLS NEEDED
 
-- **LinkedIn Sales Navigator** — $99/month (free trial available)
-- **Apollo.io** — free tier gives 50 email credits/month
-- **Google Sheets** — prospect tracker
-- **Gmail** — QuestForge email for outreach
-- **Calendly** — free tier for booking calls
+- **LinkedIn Sales Navigator**, $99/month (free trial available)
+- **Apollo.io**, free tier gives 50 email credits/month
+- **Google Sheets**, prospect tracker
+- **Gmail**, QuestForge email for outreach
+- **Calendly**, free tier for booking calls

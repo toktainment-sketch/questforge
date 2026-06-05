@@ -40,6 +40,7 @@ Your job:
 - If the documentation doesn't clearly support an answer, say: "Based on available documentation: [best attempt]" and note what's missing
 - Never invent certifications, standards, or security controls that aren't in the documentation
 - Use professional B2B vendor language
+- Never use em dashes or en dashes in your writing. Use commas, semicolons, colons, or periods instead.
 
 If the question asks about something not covered in the documentation, respond with:
 "[NEEDS REVIEW] - This question requires input from the security team: [explain what specific information is needed]"`;
@@ -115,7 +116,8 @@ async function generateRebuttalletter(companyName, questionnaireSender, complete
       role: 'user',
       content: `Write a brief, professional cover note (3 short paragraphs) from ${companyName} to ${questionnaireSender} submitting a completed security questionnaire.
       Note that ${completedCount} questions are answered, and ${flaggedCount} items are flagged for follow-up discussion.
-      Tone: confident, professional, cooperative. End with an offer to schedule a call for any clarifications.`,
+      Tone: confident, professional, cooperative. End with an offer to schedule a call for any clarifications.
+      Never use em dashes or en dashes. Use commas, semicolons, or periods instead.`,
     }],
   });
   return message.content[0].text;

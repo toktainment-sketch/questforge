@@ -1,17 +1,17 @@
-# QuestForge — Delivery SOP
+# QuestForge, Delivery SOP
 
 ## Standard Operating Procedure for Questionnaire Completion Service
 
 ---
 
-## 1. CLIENT INTAKE (0–1 hour after payment)
+## 1. CLIENT INTAKE (0-1 hour after payment)
 
 ### Trigger
 Client pays via Stripe or sends payment confirmation email.
 
 ### Steps
 1. Send confirmation email within 30 minutes:
-   - Subject: "QuestForge — You're in. Upload your files here."
+   - Subject: "QuestForge, You're in. Upload your files here."
    - Include upload link (QuestForge dashboard URL)
    - List what to upload: questionnaire file + security documentation
    - Set expectation: "24-hour delivery for Standard, 48-hour for Large"
@@ -20,15 +20,15 @@ Client pays via Stripe or sends payment confirmation email.
 
 ### Confirmation Email Template
 
-Subject: QuestForge — Upload your questionnaire and security docs
+Subject: QuestForge, Upload your questionnaire and security docs
 
 Hi {{firstName}},
 
-Payment confirmed — thank you. Here's what to do next:
+Payment confirmed, thank you. Here's what to do next:
 
 **Step 1:** Go to {{uploadLink}}
 **Step 2:** Upload your security questionnaire (Excel, Word, or PDF)
-**Step 3:** Upload your security documentation (SOC 2 report, pen test, privacy policy, previous questionnaire answers — anything you'd reference when answering)
+**Step 3:** Upload your security documentation (SOC 2 report, pen test, privacy policy, previous questionnaire answers, anything you'd reference when answering)
 
 Once uploaded, we'll deliver your completed questionnaire draft within {{deliveryTime}}.
 
@@ -39,7 +39,7 @@ QuestForge Team
 
 ---
 
-## 2. PROCESSING (1–4 hours)
+## 2. PROCESSING (1-4 hours)
 
 ### Steps
 1. Verify uploaded files are readable (not corrupted, not password-protected)
@@ -67,7 +67,7 @@ QuestForge Team
 
 ---
 
-## 3. HUMAN QA REVIEW (30–60 minutes)
+## 3. HUMAN QA REVIEW (30-60 minutes)
 
 ### Mandatory Review Items
 1. **Legal flags:** Read every flagged legal/contractual answer. Verify the flag is appropriate. Add guidance note if needed.
@@ -87,15 +87,15 @@ QuestForge Team
 
 ### Delivery Email Template
 
-Subject: Your completed security questionnaire is ready — QuestForge
+Subject: Your completed security questionnaire is ready, QuestForge
 
 Hi {{firstName}},
 
 Your security questionnaire is complete. Here's what's attached:
 
-**1. Completed Questionnaire** — answers filled in, ready for your team to review and submit.
+**1. Completed Questionnaire**, answers filled in, ready for your team to review and submit.
 
-**2. QuestForge Report** — includes:
+**2. QuestForge Report**, includes:
 - {{totalQuestions}} questions answered
 - {{readyPercent}}% auto-answered with high confidence
 - {{flaggedCount}} items flagged for your review (details in the report)
@@ -103,7 +103,7 @@ Your security questionnaire is complete. Here's what's attached:
 
 **What to do next:**
 1. Open the completed questionnaire file
-2. Review the flagged items (marked in the report) — these are legal/contractual questions or items where we need your team's specific input
+2. Review the flagged items (marked in the report), these are legal/contractual questions or items where we need your team's specific input
 3. Submit to your prospect
 
 **Items flagged for your review:**
@@ -116,7 +116,7 @@ QuestForge Team
 
 ---
 
-## 5. POST-DELIVERY (Day 1–14 after delivery)
+## 5. POST-DELIVERY (Day 1-14 after delivery)
 
 ### Day 1: Delivery confirmation
 - Confirm client received and can open all files

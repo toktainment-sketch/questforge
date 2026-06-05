@@ -90,7 +90,7 @@ app.post('/api/process', upload.fields([
   const outputDir = path.join('output', jobId);
   fs.mkdirSync(outputDir, { recursive: true });
 
-  // Respond immediately with job ID — processing happens async
+  // Respond immediately with job ID, processing happens async
   res.json({ jobId, message: 'Processing started. Poll /api/status/:jobId for updates.' });
 
   // ── ASYNC PROCESSING ──────────────────────────────────────────────────────

@@ -27,10 +27,10 @@ function buildFlaggedItemsList(results) {
       question: r.question,
       draftAnswer: r.answer,
       reason: r.isLegalFlag
-        ? 'LEGAL FLAG — contains liability/contractual language, review before submitting'
+        ? 'LEGAL FLAG, contains liability/contractual language, review before submitting'
         : r.confidence === 'LOW'
-        ? 'LOW CONFIDENCE — documentation did not clearly cover this topic'
-        : 'NEEDS REVIEW — flagged for manual verification',
+        ? 'LOW CONFIDENCE, documentation did not clearly cover this topic'
+        : 'NEEDS REVIEW, flagged for manual verification',
     }));
 }
 
@@ -60,7 +60,7 @@ function writeSummaryReport(results, companyName, coverLetter, outputPath) {
   const flagged = buildFlaggedItemsList(results);
 
   const summarySheet = XLSX.utils.aoa_to_sheet([
-    ['QUESTFORGE — COMPLETION REPORT'],
+    ['QUESTFORGE, COMPLETION REPORT'],
     ['Company', companyName],
     ['Date', new Date().toLocaleDateString()],
     [''],
@@ -75,7 +75,7 @@ function writeSummaryReport(results, companyName, coverLetter, outputPath) {
     ['COVER LETTER'],
     [coverLetter || ''],
     [''],
-    ['FLAGGED ITEMS — REVIEW BEFORE SUBMITTING'],
+    ['FLAGGED ITEMS, REVIEW BEFORE SUBMITTING'],
     ['ID', 'Question', 'Draft Answer', 'Reason'],
     ...flagged.map(f => [f.id, f.question, f.draftAnswer, f.reason]),
   ]);
