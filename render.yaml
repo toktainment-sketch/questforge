@@ -2,13 +2,23 @@ services:
   - type: web
     name: questforge
     runtime: node
-    plan: free
+    plan: starter
     buildCommand: npm install
     startCommand: node server.js
     envVars:
       - key: ANTHROPIC_API_KEY
         sync: false
-      - key: STRIPE_SECRET_KEY
+      - key: LEMONSQUEEZY_API_KEY
+        sync: false
+      - key: LEMONSQUEEZY_STORE_ID
+        sync: false
+      - key: LEMONSQUEEZY_VARIANT_STANDARD
+        sync: false
+      - key: LEMONSQUEEZY_VARIANT_LARGE
+        sync: false
+      - key: LEMONSQUEEZY_VARIANT_MONTHLY
+        sync: false
+      - key: LEMONSQUEEZY_WEBHOOK_SECRET
         sync: false
       - key: PORT
         value: 3000

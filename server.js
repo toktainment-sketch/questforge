@@ -8,7 +8,7 @@ const fs = require('fs');
 const { parseDocument, extractQuestionsFromExcel, extractQuestionsFromText } = require('./src/documentParser');
 const { processQuestionnaire, generateRebuttalletter } = require('./src/answerEngine');
 const { writeExcelOutput, writeSummaryReport, buildConfidenceReport } = require('./src/reportBuilder');
-const { initStripe, createCheckoutSession, verifyPayment, PRODUCTS } = require('./src/payments');
+const { initPayments, createCheckoutSession, verifyPayment, verifyWebhookSignature, PRODUCTS } = require('./src/payments');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,17 +20,45 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage, limits: { fileSize: 20 * 1024 * 1024 } }); // 20MB limit
 
+// LemonSqueezy webhook needs the raw body for signature verification, so it must be
+// registered with a raw body parser BEFORE the global JSON parser.
+app.post('/api/lemonsqueezy/webhook', express.raw({ type: '*/*' }), (req, res) => {
+  const signature = req.get('X-Signature');
+  const rawBody = req.body; // Buffer
+  if (!verifyWebhookSignature(rawBody, signature)) {
+    return res.status(401).json({ error: 'Invalid signature' });
+  }
+  let event;
+  try {
+    event = JSON.parse(rawBody.toString('utf-8'));
+  } catch {
+    return res.status(400).json({ error: 'Invalid JSON' });
+  }
+  const eventName = event?.meta?.event_name;
+  const email = event?.data?.attributes?.user_email;
+  const tier = event?.meta?.custom_data?.tier;
+  console.log(`💰 LemonSqueezy webhook: ${eventName} | tier=${tier} | email=${email}`);
+  // Single-operator flow: the operator is also notified by LemonSqueezy email.
+  // Acknowledge quickly so LemonSqueezy does not retry.
+  res.json({ received: true });
+});
+
 app.use(express.json());
+
+// The sales landing page is the front door. The upload tool lives at /app.
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'landing.html')));
+app.get('/app', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+
 app.use(express.static('public'));
 app.use('/output', express.static('output'));
 
-const stripeReady = initStripe();
+const paymentsReady = initPayments();
 
 // ── ROUTES ────────────────────────────────────────────────────────────────────
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', apiKey: !!process.env.ANTHROPIC_API_KEY, stripe: stripeReady });
+  res.json({ status: 'ok', apiKey: !!process.env.ANTHROPIC_API_KEY, payments: paymentsReady });
 });
 
 // ── PAYMENT ROUTES ───────────────────────────────────────────────────────────
@@ -47,7 +75,7 @@ app.get('/api/pricing', (req, res) => {
 });
 
 app.post('/api/checkout', async (req, res) => {
-  if (!stripeReady) {
+  if (!paymentsReady) {
     return res.status(503).json({ error: 'Payments not configured yet. Contact us directly.' });
   }
   const { tier, email } = req.body;
@@ -56,7 +84,7 @@ app.post('/api/checkout', async (req, res) => {
     const session = await createCheckoutSession(
       tier || 'standard',
       email,
-      `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      `${baseUrl}/success`,
       `${baseUrl}/cancel`
     );
     res.json(session);
@@ -65,10 +93,10 @@ app.post('/api/checkout', async (req, res) => {
   }
 });
 
-app.get('/api/verify-payment/:sessionId', async (req, res) => {
-  if (!stripeReady) return res.status(503).json({ error: 'Payments not configured' });
+app.get('/api/verify-payment/:orderId', async (req, res) => {
+  if (!paymentsReady) return res.status(503).json({ error: 'Payments not configured' });
   try {
-    const result = await verifyPayment(req.params.sessionId);
+    const result = await verifyPayment(req.params.orderId);
     res.json(result);
   } catch (err) {
     res.status(400).json({ error: err.message });
