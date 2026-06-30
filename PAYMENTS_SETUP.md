@@ -25,6 +25,11 @@ PADDLE_CLIENT_TOKEN=<copy from Paddle > Developer Tools > Authentication > Clien
 PADDLE_PRICE_STANDARD=pri_01kwb8g043gthn3weahbzcb7pq
 PADDLE_PRICE_LARGE=pri_01kwb8h6vnzhe6bzaj921attjp
 PADDLE_PRICE_MONTHLY=pri_01kwb8hv88py9cp7qs38kz2ctp
+```
+
+Set this after creating the Paddle notification endpoint:
+
+```text
 PADDLE_WEBHOOK_SECRET=<create from Paddle notifications/webhook endpoint>
 ```
 
