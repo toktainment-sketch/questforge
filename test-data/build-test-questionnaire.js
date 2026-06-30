@@ -1,10 +1,10 @@
-const XLSX = require('xlsx');
+const writeExcelFile = require('write-excel-file/node');
 const path = require('path');
 
 const questions = [
   ['ID', 'Category', 'Question', 'Vendor Response'],
   ['Q1', 'General', 'Please describe your company, including year founded, headquarters location, and number of employees.', ''],
-  ['Q2', 'General', 'What compliance certifications does your organization currently hold (e.g., SOC 2, ISO 27001, HIPAA, FedRAMP)?', ''],
+  ['Q2', 'General', 'What compliance certifications does your organization currently hold (e.g. SOC 2, ISO 27001, HIPAA, FedRAMP)?', ''],
   ['Q3', 'Infrastructure', 'Where is your production infrastructure hosted? Please specify cloud provider, regions, and whether multi-region redundancy is in place.', ''],
   ['Q4', 'Infrastructure', 'How are your development, staging, and production environments separated?', ''],
   ['Q5', 'Encryption', 'Describe how data is encrypted at rest. What encryption algorithm and key length are used?', ''],
@@ -30,18 +30,17 @@ const questions = [
   ['Q25', 'Network Security', 'Describe your network security controls, including firewalls, DDoS protection, and intrusion detection systems.', ''],
 ];
 
-const ws = XLSX.utils.aoa_to_sheet(questions);
+async function main() {
+  const outputPath = path.join(__dirname, 'sample-questionnaire.xlsx');
+  await writeExcelFile(questions, {
+    sheet: 'Security Questionnaire',
+    columns: [{ width: 5 }, { width: 18 }, { width: 80 }, { width: 60 }],
+    stickyRowsCount: 1,
+  }).toFile(outputPath);
+  console.log('Created:', outputPath);
+}
 
-// Set column widths
-ws['!cols'] = [
-  { wch: 5 },   // ID
-  { wch: 18 },  // Category
-  { wch: 80 },  // Question
-  { wch: 60 },  // Response
-];
-
-const wb = XLSX.utils.book_new();
-XLSX.utils.book_append_sheet(wb, ws, 'Security Questionnaire');
-const outputPath = path.join(__dirname, 'sample-questionnaire.xlsx');
-XLSX.writeFile(wb, outputPath);
-console.log('Created:', outputPath);
+main().catch(err => {
+  console.error(err);
+  process.exitCode = 1;
+});

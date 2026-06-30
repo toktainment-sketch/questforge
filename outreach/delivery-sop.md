@@ -1,200 +1,166 @@
-# QuestForge, Delivery SOP
+# QuestForge Concierge Pilot SOP
 
-## Standard Operating Procedure for Questionnaire Completion Service
+## Operating Position
 
----
+QuestForge is a controlled, human-reviewed concierge pilot. Do not invite clients
+to a public upload flow. The `/app` workspace is for the operator only and must
+be protected by `QUESTFORGE_OPERATOR_TOKEN`.
 
-## 1. CLIENT INTAKE (0-1 hour after payment)
+## 1. Intake
 
 ### Trigger
-Client pays via Stripe or sends payment confirmation email.
 
-### Steps
-1. Send confirmation email within 30 minutes:
-   - Subject: "QuestForge, You're in. Upload your files here."
-   - Include upload link (QuestForge dashboard URL)
-   - List what to upload: questionnaire file + security documentation
-   - Set expectation: "24-hour delivery for Standard, 48-hour for Large"
-2. Log client in tracking sheet: name, company, plan, payment date, delivery deadline
-3. If client hasn't uploaded within 24 hours, send reminder email
+Client requests a pilot and payment is confirmed through an approved payment
+route. For QuestForge B2B pilots, the intended route is Payoneer Request a
+Payment after Payoneer KYC is approved.
 
-### Confirmation Email Template
+Until Payoneer is approved, do not treat Payoneer as live. Use only an owner
+approved pilot exception or another confirmed payment route.
 
-Subject: QuestForge, Upload your questionnaire and security docs
+### Checklist
+
+- Confirm client company, requester, prospect/customer, deadline, and plan.
+- Confirm the questionnaire format and approximate question count.
+- Confirm what supporting documents they can provide.
+- Confirm payment status. "Paid" means funds are received/available in the
+  payment provider balance, not merely that a request was sent.
+- Offer NDA before receiving sensitive files.
+- Confirm file-transfer method and retention schedule.
+- Log engagement in the tracker before files are processed.
+
+### Intake Email Template
+
+Subject: QuestForge pilot intake, next steps
 
 Hi {{firstName}},
 
-Payment confirmed, thank you. Here's what to do next:
+Thanks for starting a QuestForge pilot. Before we process anything, please reply
+with:
 
-**Step 1:** Go to {{uploadLink}}
-**Step 2:** Upload your security questionnaire (Excel, Word, or PDF)
-**Step 3:** Upload your security documentation (SOC 2 report, pen test, privacy policy, previous questionnaire answers, anything you'd reference when answering)
+- Company name to use in the questionnaire.
+- Prospect or customer who sent the questionnaire.
+- Deadline and preferred delivery time.
+- Questionnaire file format and approximate number of questions.
+- Whether you need an NDA before sending security documents.
 
-Once uploaded, we'll deliver your completed questionnaire draft within {{deliveryTime}}.
-
-Questions? Reply to this email.
+Once confirmed, we will send file-transfer instructions and return a reviewed
+draft package within the agreed turnaround window.
 
 Best,
 QuestForge Team
 
----
+## 2. File Handling
 
-## 2. PROCESSING (1-4 hours)
+### Accept
 
-### Steps
-1. Verify uploaded files are readable (not corrupted, not password-protected)
-2. If files are unusable, email client immediately asking for re-upload
-3. Run questionnaire through QuestForge engine
-4. Monitor processing status via /api/status endpoint
-5. When complete, download both output files:
-   - Completed questionnaire (original format)
-   - Summary report (confidence scores + flagged items)
+- Questionnaire: `.xlsx`, `.docx`, `.pdf`, or `.txt`.
+- Supporting documents: `.pdf`, `.docx`, `.txt`, or `.xlsx`.
+- Maximum 10 supporting files through the current operator tool.
 
-### Quality Checks Before Delivery
-- [ ] All questions have answers (no blank responses)
-- [ ] Confidence report shows 80%+ auto-answered
-- [ ] All legal/contractual questions are flagged (indemnification, SLA, liability, breach notification)
-- [ ] No contradictory answers between sections
-- [ ] Company name is correct throughout
-- [ ] Cover letter is professional and references correct parties
-- [ ] Flagged items have clear guidance on what client needs to review
+### Do Not Accept
+
+- Password-protected files unless the password is provided through a separate
+  channel.
+- Executables, archives, images as primary evidence, or unknown file types.
+- Documents the client is not authorized to share.
+
+### Operator Steps
+
+1. Confirm received/available payment or approved pilot exception.
+2. Confirm NDA status if requested.
+3. Save files only in the approved working location.
+4. Use `/app?token={{operatorToken}}` locally or in the private operator
+   environment.
+5. Do not share `/app` or operator token with the client.
+
+## 3. Processing
+
+### Run
+
+1. Open the operator workspace.
+2. Upload one questionnaire and up to 10 supporting documents.
+3. Enter the exact client company name and prospect/customer name.
+4. Start processing and monitor `/api/status/:jobId` through the operator UI.
+5. Download the generated report and completed questionnaire draft.
 
 ### If Processing Fails
-1. Check error in status.json
-2. Common issues: file too large, unsupported format, API rate limit
-3. Re-run with adjusted settings
-4. If still failing, manually process the problematic sections and note in delivery
 
----
+1. Read the error in `status.json` or the UI.
+2. Check for unsupported format, corrupted file, missing questions, or API issue.
+3. Re-run only after fixing the file issue.
+4. If still blocked, notify the client with a revised timeline or refund option.
 
-## 3. HUMAN QA REVIEW (30-60 minutes)
+## 4. Human QA
 
-### Mandatory Review Items
-1. **Legal flags:** Read every flagged legal/contractual answer. Verify the flag is appropriate. Add guidance note if needed.
-2. **LOW confidence answers:** Read each one. Either improve using documentation or mark clearly as "needs client input."
-3. **Consistency check:** Spot-check 5 random HIGH confidence answers against the source documentation. Are they accurate?
-4. **Format check:** Open the completed questionnaire file. Does it look right? Are answers in the correct cells/fields?
-5. **Cover letter:** Read it. Is it professional? Does it reference the correct company names?
+QuestForge output is never auto-submitted. QA is mandatory.
 
-### QA Pass/Fail Criteria
-- **PASS:** 80%+ auto-answered, all legal items flagged, no obvious errors in spot-check
-- **FAIL:** Under 80% auto-answered, missing legal flags, contradictory answers found
-- If FAIL: fix issues and re-run QA check
+### Review Checklist
 
----
+- Confirm all questionnaire rows that should be answered have a draft answer.
+- Review every legal, contractual, SLA, breach notification, liability, and
+  data-retention answer.
+- Review every LOW-confidence answer and rewrite or mark for client input.
+- Spot-check at least five HIGH/MEDIUM answers against source documentation.
+- Check that company names, prospect names, and dates are correct.
+- Open every output file and confirm formatting is usable.
+- Remove unsupported claims that are not present in the client documentation.
 
-## 4. DELIVERY (within 24/48 hours of upload)
+### Pass Criteria
+
+- No obvious unsupported security, privacy, legal, or compliance claim remains.
+- Flagged items clearly tell the client what to verify.
+- The final package is usable as a client-reviewed draft.
+
+## 5. Delivery
 
 ### Delivery Email Template
 
-Subject: Your completed security questionnaire is ready, QuestForge
+Subject: Your QuestForge questionnaire draft is ready
 
 Hi {{firstName}},
 
-Your security questionnaire is complete. Here's what's attached:
+Your QuestForge draft package is ready. Attached:
 
-**1. Completed Questionnaire**, answers filled in, ready for your team to review and submit.
+- Draft questionnaire response file.
+- QuestForge report with confidence scores and flagged items.
+- Cover note draft.
 
-**2. QuestForge Report**, includes:
-- {{totalQuestions}} questions answered
-- {{readyPercent}}% auto-answered with high confidence
-- {{flaggedCount}} items flagged for your review (details in the report)
-- Professional cover letter (ready to copy and send)
+Please review the flagged items before submitting to your prospect. These are
+the questions where your security, legal, or commercial team should verify the
+final wording.
 
-**What to do next:**
-1. Open the completed questionnaire file
-2. Review the flagged items (marked in the report), these are legal/contractual questions or items where we need your team's specific input
-3. Submit to your prospect
-
-**Items flagged for your review:**
-{{flaggedItemsSummary}}
-
-If you'd like to walk through the output together, reply and we'll schedule a 15-minute call.
+If you want to walk through the output, reply and we can schedule a short call.
 
 Best,
 QuestForge Team
 
----
+## 6. Follow-Up
 
-## 5. POST-DELIVERY (Day 1-14 after delivery)
+- Day 1: Confirm the client received and can open files.
+- Day 3: Ask whether revisions are needed.
+- Day 7: Ask whether the questionnaire was submitted and log outcome.
+- Day 14: Ask whether they expect another questionnaire this quarter.
+- Day 30 or agreed date: delete uploaded files and generated outputs, then log
+  deletion.
 
-### Day 1: Delivery confirmation
-- Confirm client received and can open all files
-- Ask: "Any questions about the flagged items?"
+## 7. Revision Handling
 
-### Day 3: Check-in
-- Email: "Have you had a chance to review the draft? Any revisions needed?"
-- If revision requested: complete within 24 hours (1 revision included in Standard, 2 in Large)
+- Standard: 1 revision pass.
+- Large: 2 revision passes.
+- Monthly: revisions handled under the monthly agreement.
 
-### Day 7: Outcome check
-- Email: "Did you submit the questionnaire? How did it go with the prospect?"
-- Log outcome: submitted / not yet / prospect feedback
+Out-of-scope revisions:
 
-### Day 14: Follow-up and upsell
-- If positive outcome: "Glad it worked. When your next questionnaire comes in, we're here. Would the monthly plan make sense for your volume?"
-- If no response: final check-in, then close the loop
+- Claims unsupported by documentation.
+- New product/security facts not present in provided evidence.
+- Legal commitments the client has not approved.
 
-### Day 30: Delete client files
-- Remove all uploaded documents and output files from server
-- Confirm deletion in client record
+## 8. Metrics
 
----
+Track per engagement:
 
-## 6. REVISION HANDLING
-
-### Included Revisions
-- Standard plan: 1 revision pass
-- Large plan: 2 revision passes
-- Monthly plan: unlimited
-
-### Revision Process
-1. Client sends revision requests via email (specific items to change)
-2. Update answers in the questionnaire file
-3. Re-run QA on changed items only
-4. Re-deliver within 24 hours
-5. Log revision in tracking sheet
-
-### Out-of-Scope Revisions
-- Rewriting answers based on documentation we were never given → ask client for the documentation
-- Changing answers to make claims not supported by documentation → flag as risk and explain
-- Answering questions about products/features not in the documentation → ask client for product documentation
-
----
-
-## 7. ESCALATION PROCEDURES
-
-### Client Complaint
-1. Respond within 2 hours
-2. Offer to re-process with additional documentation
-3. If quality genuinely poor: offer partial refund or free re-run
-
-### Processing Failure
-1. Notify client within 1 hour of discovery
-2. Provide realistic revised timeline
-3. If cannot deliver: full refund, no questions asked
-
-### Confidentiality Concern
-1. Execute NDA immediately if requested
-2. Confirm data handling practices in writing
-3. Offer to delete files immediately after delivery if client prefers
-
----
-
-## 8. TRACKING AND METRICS
-
-### Track Per Engagement
-- Client name and company
-- Plan type (Standard / Large / Monthly)
-- Upload date → delivery date (measure turnaround)
-- Total questions → auto-answered → flagged
-- Revisions requested (count)
-- Client outcome (submitted? prospect approved?)
-- Client satisfaction (asked at Day 7)
-
-### Weekly Metrics to Review
-- Total engagements completed
-- Average turnaround time
-- Average auto-answer rate
-- Number of revisions per engagement
-- Client satisfaction score
-- Revenue collected
+- Client, requester, plan, payment status, NDA status.
+- Upload/receipt date, delivery deadline, delivery date.
+- Total questions, answered questions, flagged items, revisions.
+- Client outcome and testimonial permission.
+- Deletion date.

@@ -3,192 +3,145 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QuestForge | Pricing</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
-
-    header { padding: 24px 40px; border-bottom: 1px solid #1e2530; display: flex; align-items: center; gap: 12px; }
-    header h1 { font-size: 1.3rem; font-weight: 700; color: #fff; cursor: pointer; }
-    header span { font-size: 0.8rem; background: #1a3a5c; color: #60a5fa; padding: 3px 10px; border-radius: 20px; }
-
-    main { max-width: 960px; margin: 48px auto; padding: 0 24px; }
-
-    .hero { text-align: center; margin-bottom: 48px; }
-    .hero h2 { font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 12px; }
-    .hero p { color: #94a3b8; font-size: 1.05rem; line-height: 1.6; max-width: 600px; margin: 0 auto; }
-
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
-    @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
-
-    .plan { background: #161b27; border: 1px solid #1e2530; border-radius: 16px; padding: 32px 28px; display: flex; flex-direction: column; }
-    .plan.featured { border-color: #3b82f6; position: relative; }
-    .plan.featured::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: #fff; font-size: 0.7rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; letter-spacing: 0.5px; }
-
-    .plan h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-    .plan .price { font-size: 2.4rem; font-weight: 800; color: #3b82f6; margin-bottom: 4px; }
-    .plan .price-note { font-size: 0.8rem; color: #64748b; margin-bottom: 20px; }
-    .plan .desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
-
-    .plan ul { list-style: none; margin-bottom: 28px; }
-    .plan ul li { font-size: 0.85rem; color: #cbd5e1; padding: 6px 0; padding-left: 22px; position: relative; }
-    .plan ul li::before { content: '\2713'; position: absolute; left: 0; color: #10b981; font-weight: 700; }
-
-    .plan-btn { display: block; width: 100%; padding: 14px; text-align: center; border-radius: 10px; font-size: 0.95rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
-    .plan-btn.primary { background: #3b82f6; color: #fff; }
-    .plan-btn.primary:hover { background: #2563eb; }
-    .plan-btn.secondary { background: transparent; color: #60a5fa; border: 1px solid #2d4a6e; }
-    .plan-btn.secondary:hover { background: #1a3a5c; }
-
-    .trust { text-align: center; margin-bottom: 48px; }
-    .trust h3 { font-size: 1rem; color: #64748b; margin-bottom: 16px; font-weight: 500; }
-    .trust-items { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
-    .trust-item { font-size: 0.85rem; color: #94a3b8; }
-
-    .faq { max-width: 640px; margin: 0 auto 48px; }
-    .faq h3 { font-size: 1.2rem; color: #fff; margin-bottom: 24px; text-align: center; }
-    .faq-item { border-bottom: 1px solid #1e2530; padding: 20px 0; }
-    .faq-item h4 { font-size: 0.95rem; color: #e2e8f0; margin-bottom: 8px; cursor: pointer; }
-    .faq-item p { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
-
-    .cta-bottom { text-align: center; padding: 48px 0; }
-    .cta-bottom h3 { font-size: 1.3rem; color: #fff; margin-bottom: 8px; }
-    .cta-bottom p { color: #64748b; font-size: 0.9rem; margin-bottom: 20px; }
-    .cta-bottom a { display: inline-block; padding: 14px 32px; background: #3b82f6; color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; }
-  </style>
+  <title>QuestForge | Pilot Pricing</title>
+  <meta name="description" content="Private pilot pricing for QuestForge human-reviewed security questionnaire drafts." />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js" defer></script>
+  <script src="/site.js" defer></script>
 </head>
 <body>
-
-<header>
-  <h1 onclick="location.href='/'">QuestForge</h1>
-  <span>Pricing</span>
-</header>
-
-<main>
-  <div class="hero">
-    <h2>Close enterprise deals faster.</h2>
-    <p>Security questionnaires answered in hours, not weeks. Every plan includes AI-generated answers, confidence scoring, legal flagging, and a professional cover letter.</p>
-  </div>
-
-  <div class="pricing-grid">
-    <div class="plan">
-      <h3>Standard</h3>
-      <div class="price">$1,200</div>
-      <div class="price-note">per questionnaire</div>
-      <div class="desc">For questionnaires up to 300 questions. SIG Lite, CAIQ, custom spreadsheets.</div>
-      <ul>
-        <li>Up to 300 questions</li>
-        <li>24-hour delivery</li>
-        <li>Completed questionnaire file</li>
-        <li>Confidence report</li>
-        <li>Cover letter draft</li>
-        <li>1 revision pass</li>
-      </ul>
-      <button class="plan-btn secondary" onclick="startCheckout('standard')">Get Started</button>
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>QuestForge</span>
+      </a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Pilot%20Intake">Request pilot</a>
+      </div>
     </div>
+  </nav>
 
-    <div class="plan featured">
-      <h3>Large Questionnaire</h3>
-      <div class="price">$1,800</div>
-      <div class="price-note">per questionnaire</div>
-      <div class="desc">For full SIG, extended CAIQ, or custom questionnaires with 300-600 questions.</div>
-      <ul>
-        <li>Up to 600 questions</li>
-        <li>48-hour delivery</li>
-        <li>Completed questionnaire file</li>
-        <li>Confidence report</li>
-        <li>Cover letter draft</li>
-        <li>2 revision passes</li>
-        <li>Dedicated QA review</li>
-      </ul>
-      <button class="plan-btn primary" onclick="startCheckout('large')">Get Started</button>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <p class="section-kicker">Pilot pricing</p>
+          <h2>Premium drafting support without pretending it is self-service SaaS.</h2>
+          <p>Every engagement includes AI-assisted drafting, operator QA, confidence reporting, legal flagging, and a client review package. Final submission remains with your team.</p>
+          <p class="payment-status" data-payment-status>Secure Paddle checkout is being connected. Email intake remains available.</p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan">
+            <span class="status-pill blue plan-label">Standard</span>
+            <h3>Up to 300 questions</h3>
+            <div class="price">$1,200</div>
+            <div class="price-note">per questionnaire</div>
+            <ul>
+              <li>24-hour target after usable files are received</li>
+              <li>Draft questionnaire response file</li>
+              <li>Confidence report and flagged items</li>
+              <li>Cover note draft</li>
+              <li>One revision pass</li>
+            </ul>
+            <a class="btn secondary" data-checkout-tier="standard" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Standard%20Pilot">Buy standard pilot</a>
+          </article>
+
+          <article class="plan featured">
+            <span class="status-pill green plan-label">Large</span>
+            <h3>300 to 600 questions</h3>
+            <div class="price">$1,800</div>
+            <div class="price-note">per questionnaire</div>
+            <ul>
+              <li>48-hour target after usable files are received</li>
+              <li>Draft questionnaire response file</li>
+              <li>Confidence report and flagged items</li>
+              <li>Dedicated formatting QA</li>
+              <li>Two revision passes</li>
+            </ul>
+            <a class="btn" data-checkout-tier="large" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Large%20Pilot">Buy large pilot</a>
+          </article>
+
+          <article class="plan">
+            <span class="status-pill amber plan-label">Monthly</span>
+            <h3>Recurring questionnaire support</h3>
+            <div class="price">$4,500</div>
+            <div class="price-note">per month</div>
+            <ul>
+              <li>Priority handling for recurring questionnaires</li>
+              <li>Reusable answer library maintenance</li>
+              <li>Quarterly source-document refresh</li>
+              <li>Ongoing revision support</li>
+              <li>Email or shared-channel coordination</li>
+            </ul>
+            <a class="btn secondary" data-checkout-tier="monthly" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Monthly%20Pilot">Start monthly support</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head center">
+          <p class="section-kicker">Operating commitments</p>
+          <h2>Built for controlled handling of sensitive files.</h2>
+        </div>
+        <div class="grid-3">
+          <article class="panel">
+            <h3>Private intake first</h3>
+            <p>No public upload flow. File handling starts only after scope, payment, NDA needs, and transfer method are confirmed.</p>
+          </article>
+          <article class="panel">
+            <h3>No training on client documents</h3>
+            <p>Client materials are used only for the engagement requested. Public model training is not part of the workflow.</p>
+          </article>
+          <article class="panel">
+            <h3>Deletion tracked</h3>
+            <p>Uploaded files and generated outputs are deleted according to the agreed retention schedule and logged in the engagement tracker.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head center">
+          <p class="section-kicker">FAQ</p>
+          <h2>Common pilot questions.</h2>
+        </div>
+        <div class="faq">
+          <article class="faq-item">
+            <h3>What if an answer is wrong?</h3>
+            <p>Every answer is a draft. Low-confidence answers and legal or contractual questions are flagged for your team before submission.</p>
+          </article>
+          <article class="faq-item">
+            <h3>How is this different from Vanta or Drata?</h3>
+            <p>Those tools manage controls and trust-center evidence. QuestForge focuses on the buyer's custom questionnaire format.</p>
+          </article>
+          <article class="faq-item">
+            <h3>What formats are supported?</h3>
+            <p>The current operator workflow supports XLSX, DOCX, PDF, and TXT. XLSX is strongest for preserving questionnaire structure.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Is this public self-service?</h3>
+            <p>No. QuestForge is currently a controlled concierge pilot with human QA and operator-only processing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Copyright 2026 QuestForge.</span>
+      <div class="footer-links">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund">Refunds</a>
+      </div>
     </div>
-
-    <div class="plan">
-      <h3>Monthly Unlimited</h3>
-      <div class="price">$4,500</div>
-      <div class="price-note">per month</div>
-      <div class="desc">For teams handling 5+ questionnaires per month. Your answer library improves over time.</div>
-      <ul>
-        <li>Unlimited questionnaires</li>
-        <li>Priority delivery</li>
-        <li>Dedicated answer library</li>
-        <li>Quarterly knowledge base update</li>
-        <li>Unlimited revisions</li>
-        <li>Slack/email support</li>
-      </ul>
-      <button class="plan-btn secondary" onclick="startCheckout('monthly')">Subscribe</button>
-    </div>
-  </div>
-
-  <div class="trust">
-    <h3>Built for B2B SaaS security teams</h3>
-    <div class="trust-items">
-      <div class="trust-item">Your documents encrypted at rest + in transit</div>
-      <div class="trust-item">NDA available on request</div>
-      <div class="trust-item">No training on your data</div>
-      <div class="trust-item">SOC 2 compliant processing</div>
-    </div>
-  </div>
-
-  <div class="faq">
-    <h3>Common Questions</h3>
-
-    <div class="faq-item">
-      <h4>What if the answers are wrong?</h4>
-      <p>Every answer comes with a confidence score. Low-confidence answers and all legal/contractual questions are flagged for your team to review before submission. You're reviewing a draft, not blind-trusting AI output.</p>
-    </div>
-
-    <div class="faq-item">
-      <h4>We already have Vanta / Drata. How is this different?</h4>
-      <p>Vanta and Drata are great for continuous monitoring and publishing your trust center. But when a prospect sends a custom 400-question spreadsheet, they don't fill it in for you. That's exactly the gap QuestForge fills.</p>
-    </div>
-
-    <div class="faq-item">
-      <h4>What file formats do you accept?</h4>
-      <p>Excel (.xlsx), Word (.docx), PDF, and plain text for both questionnaires and your security documentation. Most SIG and CAIQ questionnaires come in Excel, that's our strongest format.</p>
-    </div>
-
-    <div class="faq-item">
-      <h4>How do you handle our confidential security documents?</h4>
-      <p>Your documents are encrypted in transit and at rest. Each client's data is isolated, never shared, never used for training. We execute NDAs on request before you upload anything. Documents are deleted 30 days after delivery.</p>
-    </div>
-
-    <div class="faq-item">
-      <h4>Can I try it with one questionnaire before committing?</h4>
-      <p>Yes. The Standard plan is pay-per-questionnaire, no commitment. Try one, see the output quality, then decide if you want ongoing service.</p>
-    </div>
-  </div>
-
-  <div class="cta-bottom">
-    <h3>Your next enterprise deal shouldn't die in security review.</h3>
-    <p>Upload your questionnaire. Get a complete draft in hours.</p>
-    <a href="mailto:hello@questforgeai.ai?subject=QuestForge%20Inquiry">Contact Us to Start</a>
-  </div>
-</main>
-
-<script>
-  async function startCheckout(tier) {
-    const email = prompt('Enter your email to get started:');
-    if (!email) return;
-
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tier, email }),
-      });
-      const data = await res.json();
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else if (data.error) {
-        alert('Payments are being set up. Please email us directly at hello@questforgeai.ai to get started.');
-      }
-    } catch {
-      alert('Payments are being set up. Please email us directly to get started.');
-    }
-  }
-</script>
+  </footer>
 </body>
 </html>

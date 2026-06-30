@@ -1,99 +1,86 @@
-# QuestForge, LinkedIn Outreach Scripts
+# QuestForge LinkedIn Outreach Scripts
 
-**Target:** VP Sales, Head of Revenue, CEO, CISO at B2B SaaS (20-300 employees)
-**Goal:** Connection → conversation → discovery call or pilot
+**Target:** VP Sales, Head of Revenue, CEO, CISO at B2B SaaS companies.
+**Goal:** Start a conversation about one controlled pilot.
 
----
+## Connection Requests
 
-## CONNECTION REQUEST (under 300 characters)
+**Sales leader angle:**
+Hi {{firstName}}, I work with B2B SaaS teams on security questionnaire bottlenecks in enterprise deals. We help create reviewed first drafts from existing security docs. Would love to connect.
 
-**Version A, Sales leader angle:**
-Hi {{firstName}}, I work with B2B SaaS teams on a specific problem: security questionnaires killing enterprise deal velocity. We complete them in 4 hours. Would love to connect.
+**Founder angle:**
+Hi {{firstName}}, saw {{companyName}} is selling to enterprise. Security questionnaires may already be eating team time. I am building a concierge workflow for that. Happy to connect.
 
-**Version B, Founder angle:**
-Hi {{firstName}}, saw {{companyName}} is selling to enterprise. Guessing security questionnaires are eating your team's time. We built something for exactly this. Happy to share.
+**CISO angle:**
+Hi {{firstName}}, we help security teams reduce questionnaire first-draft work while keeping human review in the loop. Would love to connect.
 
-**Version C, CISO angle:**
-Hi {{firstName}}, we help security teams stop being the bottleneck on enterprise deals. AI-drafted questionnaire responses from your actual SOC 2 docs. Would love to connect.
+## Follow-Up After Connection
 
----
+Thanks for connecting, {{firstName}}. Quick question: when a prospect sends a
+custom security questionnaire, what is the current turnaround on your team?
 
-## FOLLOW-UP AFTER CONNECTION (send within 24 hours)
+QuestForge creates a reviewed first draft from your existing security
+documentation, with legal and low-evidence items flagged before submission. Happy
+to share a sample if that is relevant to {{companyName}}.
 
-Thanks for connecting, {{firstName}}. Quick question, when a prospect sends a 400-question security questionnaire, what's the current turnaround on your team?
+## Follow-Up After Interest
 
-We're seeing 3-6 weeks average and built QuestForge to compress it to under 24 hours. Happy to share what the output looks like if that's relevant to {{companyName}}.
+Happy to show the sample output.
 
----
+The pilot is simple: one questionnaire, your supporting docs, a reviewed draft
+package, and your team approves the final wording. It is built for teams that
+have the evidence but lose too much time turning it into buyer-specific answers.
 
-## FOLLOW-UP AFTER INTEREST SIGNAL (they reply or engage)
+Do you have a questionnaire in progress this quarter?
 
-Happy to show you exactly what the output looks like, takes 10 minutes.
+## LinkedIn Post, Pain
 
-I can also run your next questionnaire as a no-risk pilot: $1,200, 24-hour turnaround, and if the draft isn't at least 80% complete, you don't pay.
+Security questionnaires quietly slow down enterprise SaaS deals.
 
-What does your pipeline look like for enterprise deals requiring security review right now?
+The company often has the evidence: SOC 2 report, security policies, privacy
+docs, prior questionnaire answers.
 
----
+The hard part is turning that evidence into the buyer's custom spreadsheet,
+without inventing claims or missing legal-risk questions.
 
-## LINKEDIN POST (for organic inbound, post from your personal profile)
+That is what we are building QuestForge for: reviewed first drafts, confidence
+notes, and clear flags for security/legal review.
 
-**Post 1, The Pain Post:**
+If your team handles repeated enterprise security reviews, I am happy to share a
+sample output.
 
-Security questionnaires are the silent killer of enterprise SaaS deals.
+## LinkedIn Post, Pilot
 
-Here's what actually happens:
+We are opening a small QuestForge concierge pilot for B2B SaaS teams dealing
+with security questionnaires.
 
-1. Prospect sends a 400-question SIG questionnaire
-2. Sales dumps it on the security team
-3. Security team is backlogged, responds in 4-6 weeks
-4. Prospect goes cold
-5. Deal dies in "security review"
-6. Nobody tracks it as a lost deal
+The pilot package:
 
-The frustrating part? 70% of those questions have the same answer every time. The company already has the documentation. Nobody has organized it into a reusable system.
+- One questionnaire response draft.
+- Answers based on supplied documentation.
+- Confidence notes per answer.
+- Legal and contractual items flagged.
+- Human QA before delivery.
 
-We built QuestForge to fix this. AI reads your SOC 2 report, pen test, privacy policy, and drafts the complete questionnaire in hours.
+This is not public self-service and it does not auto-submit anything. It is a
+workflow to get your team from blank spreadsheet to review-ready draft faster.
 
-Not "AI-generated fluff." Actual answers sourced from your actual documentation, with confidence scores and legal flags.
+DM me "questionnaire" if you want to see the sample.
 
-If your team answers more than 3 security questionnaires per quarter, this math is obvious.
-
-DM me "questionnaire" and I'll show you what the output looks like.
-
----
-
-**Post 2, The Results Post:**
-
-We just completed a 300-question SIG questionnaire in 4 hours.
-
-The company had been spending 3-4 weeks on each one.
-
-Here's what the output included:
-- Every question answered from their SOC 2 + security docs
-- 85% auto-answered with high confidence
-- 15% flagged for human review (legal and contractual items)
-- Professional cover letter ready to send
-- Completed questionnaire in original Excel format
-
-The founder told me: "We've had 2 enterprise deals go cold in the last quarter waiting on security review."
-
-At $150K ACV, that's $300K in pipeline risk, from paperwork.
-
-If security questionnaires are a bottleneck in your enterprise sales cycle, DM me. I'll show you the actual output.
-
----
-
-## COMMENT STRATEGY
+## Comment Strategy
 
 Search LinkedIn for posts containing:
+
 - "security questionnaire"
 - "SIG questionnaire"
 - "vendor security review"
 - "SOC 2 questionnaire"
-- "enterprise deal stuck"
+- "enterprise security review"
 
-Comment with value first (never pitch in comments):
-"This is such a common bottleneck. Most teams we talk to spend 3-6 weeks per questionnaire because there's no answer library. The fix is organizing your existing docs into a reusable system, it compresses turnaround from weeks to hours."
+Comment with useful context first:
 
-Then DM the poster or engaged commenters.
+"This is a common bottleneck. The teams that handle it best usually have two
+things: reusable source documentation and a clear review workflow for legal or
+low-evidence answers. Without that, every questionnaire starts from scratch."
+
+Then DM the poster or engaged commenters only when there is a real fit.

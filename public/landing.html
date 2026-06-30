@@ -3,206 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QuestForge | Complete Security Questionnaires in Hours, Not Weeks</title>
-  <meta name="description" content="AI-powered security questionnaire completion for B2B SaaS companies. SIG, CAIQ, and custom questionnaires answered in 4 hours using your existing documentation." />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; }
-
-    /* ── NAV ─────────────────────────────────────────────── */
-    nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-    nav .logo { font-size: 1.3rem; font-weight: 800; color: #fff; text-decoration: none; }
-    nav .logo span { color: #3b82f6; }
-    nav .nav-links { display: flex; gap: 24px; align-items: center; }
-    nav .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-    nav .nav-links a:hover { color: #fff; }
-    nav .nav-cta { background: #3b82f6; color: #fff !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; }
-    nav .nav-cta:hover { background: #2563eb; }
-
-    /* ── HERO ─────────────────────────────────────────────── */
-    .hero { max-width: 800px; margin: 80px auto 0; text-align: center; padding: 0 24px; }
-    .hero .tag { display: inline-block; background: #1a3a5c; color: #60a5fa; font-size: 0.75rem; font-weight: 600; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.3px; }
-    .hero h1 { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 20px; }
-    .hero h1 em { font-style: normal; color: #3b82f6; }
-    .hero p { font-size: 1.15rem; color: #94a3b8; line-height: 1.7; max-width: 620px; margin: 0 auto 32px; }
-    .hero-cta { display: inline-block; padding: 16px 36px; background: #3b82f6; color: #fff; font-size: 1.05rem; font-weight: 700; border-radius: 10px; text-decoration: none; transition: background 0.2s; }
-    .hero-cta:hover { background: #2563eb; }
-    .hero-sub { margin-top: 12px; font-size: 0.8rem; color: #4a5568; }
-
-    @media (max-width: 640px) { .hero h1 { font-size: 2rem; } }
-
-    /* ── STATS ────────────────────────────────────────────── */
-    .stats { display: flex; justify-content: center; gap: 48px; max-width: 700px; margin: 64px auto; padding: 0 24px; flex-wrap: wrap; }
-    .stat { text-align: center; }
-    .stat .num { font-size: 2.2rem; font-weight: 900; color: #3b82f6; }
-    .stat .lbl { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
-
-    /* ── PROBLEM ──────────────────────────────────────────── */
-    .problem { max-width: 800px; margin: 64px auto; padding: 0 24px; }
-    .problem h2 { font-size: 1.6rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 32px; }
-    .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 640px) { .pain-grid { grid-template-columns: 1fr; } }
-    .pain-item { background: #161b27; border: 1px solid #1e2530; border-radius: 10px; padding: 20px 24px; }
-    .pain-item .x { color: #ef4444; font-weight: 700; margin-right: 8px; }
-    .pain-item p { font-size: 0.9rem; color: #cbd5e1; display: inline; }
-
-    /* ── HOW IT WORKS ─────────────────────────────────────── */
-    .how { max-width: 800px; margin: 80px auto; padding: 0 24px; }
-    .how h2 { font-size: 1.6rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 40px; }
-    .steps { display: flex; flex-direction: column; gap: 24px; }
-    .step { display: flex; gap: 20px; align-items: flex-start; }
-    .step-n { width: 44px; height: 44px; background: #1a3a5c; color: #60a5fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; flex-shrink: 0; }
-    .step-content h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .step-content p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; }
-
-    /* ── WHAT YOU GET ─────────────────────────────────────── */
-    .deliverables { max-width: 800px; margin: 80px auto; padding: 0 24px; }
-    .deliverables h2 { font-size: 1.6rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 32px; }
-    .del-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 640px) { .del-grid { grid-template-columns: 1fr; } }
-    .del-item { background: #161b27; border: 1px solid #1e2530; border-radius: 10px; padding: 20px 24px; }
-    .del-item .check { color: #10b981; font-weight: 700; margin-right: 8px; }
-    .del-item p { font-size: 0.9rem; color: #cbd5e1; display: inline; }
-
-    /* ── OBJECTIONS ───────────────────────────────────────── */
-    .objections { max-width: 640px; margin: 80px auto; padding: 0 24px; }
-    .objections h2 { font-size: 1.6rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 32px; }
-    .obj { border-bottom: 1px solid #1e2530; padding: 20px 0; }
-    .obj h4 { font-size: 0.95rem; color: #e2e8f0; margin-bottom: 8px; }
-    .obj p { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
-
-    /* ── FINAL CTA ───────────────────────────────────────── */
-    .final-cta { text-align: center; padding: 80px 24px; }
-    .final-cta h2 { font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 12px; }
-    .final-cta p { color: #64748b; font-size: 1rem; margin-bottom: 28px; }
-    .final-cta a { display: inline-block; padding: 16px 40px; background: #3b82f6; color: #fff; font-size: 1.05rem; font-weight: 700; border-radius: 10px; text-decoration: none; }
-    .final-cta a:hover { background: #2563eb; }
-    .final-cta .price-hint { margin-top: 12px; font-size: 0.8rem; color: #4a5568; }
-
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer { text-align: center; padding: 40px 24px; border-top: 1px solid #1e2530; font-size: 0.8rem; color: #4a5568; }
-  </style>
+  <title>QuestForge | Human-Reviewed Security Questionnaire Drafts</title>
+  <meta name="description" content="QuestForge turns existing security documentation into a human-reviewed questionnaire draft package for B2B SaaS teams." />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/site.js" defer></script>
 </head>
 <body>
-
-<nav>
-  <a href="/" class="logo">Quest<span>Forge</span></a>
-  <div class="nav-links">
-    <a href="#how">How It Works</a>
-    <a href="/pricing.html">Pricing</a>
-    <a href="/pricing.html" class="nav-cta">Get Started</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="tag">FOR B2B SAAS COMPANIES SELLING TO ENTERPRISE</div>
-  <h1>Your next enterprise deal shouldn't die in <em>security review.</em></h1>
-  <p>We complete security questionnaires in hours using your existing SOC 2 report and security documentation. You upload. We draft. Your team refines. Close faster.</p>
-  <a href="/pricing.html" class="hero-cta">Get Your Questionnaire Done &rarr;</a>
-  <div class="hero-sub">$1,200 per questionnaire. First one includes a free revision.</div>
-</section>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat"><div class="num">4 hrs</div><div class="lbl">Average completion time</div></div>
-  <div class="stat"><div class="num">300+</div><div class="lbl">Questions handled per questionnaire</div></div>
-  <div class="stat"><div class="num">85%+</div><div class="lbl">Auto-answered with high confidence</div></div>
-</div>
-
-<!-- PROBLEM -->
-<section class="problem">
-  <h2>Security questionnaires are killing your deal velocity.</h2>
-  <div class="pain-grid">
-    <div class="pain-item"><span class="x">&#10005;</span><p>400-question SIG questionnaire drops on a Friday. Due in 3 weeks.</p></div>
-    <div class="pain-item"><span class="x">&#10005;</span><p>Your security team is backlogged. Sales is waiting. The prospect goes cold.</p></div>
-    <div class="pain-item"><span class="x">&#10005;</span><p>No answer library. Every questionnaire starts from scratch.</p></div>
-    <div class="pain-item"><span class="x">&#10005;</span><p>3 to 6 weeks of senior team time burned per enterprise deal.</p></div>
-    <div class="pain-item"><span class="x">&#10005;</span><p>Deals worth $50K to $500K stalling at the security review stage.</p></div>
-    <div class="pain-item"><span class="x">&#10005;</span><p>Your CEO or CTO is personally answering security questions.</p></div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <h2>How QuestForge works.</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-n">1</div>
-      <div class="step-content">
-        <h3>Upload your security docs</h3>
-        <p>SOC 2 report, pen test results, privacy policy, previous questionnaires, whatever you'd reference when answering. Upload once, reuse for every future questionnaire.</p>
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>QuestForge</span>
+      </a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="#process">Process</a>
+        <a href="#deliverables">Deliverables</a>
+        <a href="/pricing">Pricing</a>
+        <a class="btn" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Pilot%20Intake">Request pilot</a>
       </div>
     </div>
-    <div class="step">
-      <div class="step-n">2</div>
-      <div class="step-content">
-        <h3>Upload the questionnaire</h3>
-        <p>SIG, CAIQ, or any custom security questionnaire in Excel, Word, or PDF. We handle them all.</p>
+  </nav>
+
+  <header class="hero-scene">
+    <canvas id="signalScene" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="hero-copy">
+        <div class="eyebrow">Private concierge pilot for enterprise security reviews</div>
+        <h1>QuestForge</h1>
+        <p>Human-reviewed questionnaire drafts built from your existing SOC 2, policy, privacy, and security documentation. AI drafts the first pass, a human operator checks the output, and your team approves the final submission.</p>
+        <div class="hero-actions">
+          <a class="btn" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Pilot%20Intake">Request pilot intake</a>
+          <a class="btn secondary" href="/pricing">View pilot pricing</a>
+        </div>
+        <div class="hero-note">Private pilot only. No public uploads. NDA available before files are shared.</div>
       </div>
     </div>
-    <div class="step">
-      <div class="step-n">3</div>
-      <div class="step-content">
-        <h3>Get a complete draft in hours</h3>
-        <p>Every question answered using your documentation. Legal and low-confidence items flagged for your review. Cover letter included. Download the completed questionnaire file and submit.</p>
+  </header>
+
+  <section class="metric-band" aria-label="Pilot summary">
+    <div class="container metric-grid">
+      <div class="metric">
+        <strong>24-48h</strong>
+        <span>Target turnaround after usable files are received.</span>
+      </div>
+      <div class="metric">
+        <strong>300+</strong>
+        <span>Questionnaires supported in a reviewed pilot workflow.</span>
+      </div>
+      <div class="metric">
+        <strong>QA</strong>
+        <span>Legal, low-evidence, and consistency checks before delivery.</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- DELIVERABLES -->
-<section class="deliverables">
-  <h2>What you get.</h2>
-  <div class="del-grid">
-    <div class="del-item"><span class="check">&#10003;</span><p>Completed questionnaire in original format (Excel/Word)</p></div>
-    <div class="del-item"><span class="check">&#10003;</span><p>Confidence score for every answer (HIGH / MEDIUM / LOW)</p></div>
-    <div class="del-item"><span class="check">&#10003;</span><p>Legal and contractual questions flagged for review</p></div>
-    <div class="del-item"><span class="check">&#10003;</span><p>Professional cover letter ready to send</p></div>
-    <div class="del-item"><span class="check">&#10003;</span><p>Flagged items report with guidance</p></div>
-    <div class="del-item"><span class="check">&#10003;</span><p>Answers consistent across all submissions</p></div>
-  </div>
-</section>
+  <main>
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Controlled workflow</p>
+          <h2>From scattered evidence to a review-ready draft.</h2>
+          <p>QuestForge is designed for teams that already have security evidence but lose time translating it into a buyer's custom questionnaire format.</p>
+        </div>
+        <div class="grid-3 numbered">
+          <article class="panel">
+            <h3>Intake and scope</h3>
+            <p>Confirm questionnaire size, deadline, evidence available, NDA needs, and file-transfer path before any processing starts.</p>
+          </article>
+          <article class="panel">
+            <h3>Draft from supplied evidence</h3>
+            <p>Generate answers from the provided documents only. Questions with weak support are flagged instead of guessed.</p>
+          </article>
+          <article class="panel">
+            <h3>Human QA and delivery</h3>
+            <p>Review legal and contractual items, check formatting, and deliver a draft package for the client team to approve.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<!-- OBJECTIONS -->
-<section class="objections">
-  <h2>Questions you're thinking right now.</h2>
+    <section class="section alt" id="deliverables">
+      <div class="container split">
+        <div class="section-head">
+          <p class="section-kicker">Pilot package</p>
+          <h2>Everything your team needs to review quickly.</h2>
+          <p>The deliverable is not an auto-submission. It is a structured draft package built to reduce blank-page work while keeping final responsibility with your team.</p>
+          <div class="section-actions">
+            <a class="btn" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Pilot%20Intake">Start with one questionnaire</a>
+          </div>
+        </div>
+        <div class="evidence-list">
+          <div class="evidence-item">
+            <span>Draft questionnaire response file</span>
+            <span class="status-pill blue">Included</span>
+          </div>
+          <div class="evidence-item">
+            <span>Confidence report and flagged items</span>
+            <span class="status-pill green">Included</span>
+          </div>
+          <div class="evidence-item">
+            <span>Legal and contractual review markers</span>
+            <span class="status-pill amber">Review</span>
+          </div>
+          <div class="evidence-item">
+            <span>Cover note draft for buyer follow-up</span>
+            <span class="status-pill blue">Included</span>
+          </div>
+          <div class="evidence-item">
+            <span>Deletion date logged after delivery</span>
+            <span class="status-pill green">Tracked</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="obj">
-    <h4>"What if the answers are wrong?"</h4>
-    <p>Every answer comes with a confidence score. Low-confidence answers and all legal/contractual questions are flagged for your team to review before submission. You're reviewing a polished draft, not blind-trusting AI.</p>
-  </div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <p class="section-kicker">Why it exists</p>
+          <h2>Security review should not stall the sales cycle.</h2>
+          <p>QuestForge focuses on the narrow, expensive moment when a buyer sends a custom questionnaire and your team needs a reliable first draft fast.</p>
+        </div>
+        <div class="grid-3">
+          <article class="panel">
+            <h3>For sales leaders</h3>
+            <p>Keep enterprise opportunities moving while the security team reviews a structured draft instead of starting from scratch.</p>
+          </article>
+          <article class="panel">
+            <h3>For security teams</h3>
+            <p>Flag unsupported claims, legal commitments, and low-confidence answers before they leave the company.</p>
+          </article>
+          <article class="panel">
+            <h3>For founders</h3>
+            <p>Handle the next questionnaire without building a full GRC platform or hiring a dedicated analyst first.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <div class="obj">
-    <h4>"We already have Vanta / Drata."</h4>
-    <p>Vanta publishes your trust center and monitors controls. It doesn't fill in the custom 400-question spreadsheet a prospect just emailed you. That's exactly the gap QuestForge fills.</p>
-  </div>
+    <section class="section final-cta">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Private pilot</p>
+          <h2>Start with one controlled engagement.</h2>
+          <p>Send the next questionnaire through the pilot process, review the output, and decide whether ongoing support is worth it.</p>
+          <div class="section-actions">
+            <a class="btn" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Pilot%20Intake">Request pilot intake</a>
+            <a class="btn secondary" href="/pricing">Compare pilot tiers</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <div class="obj">
-    <h4>"Our security team handles this."</h4>
-    <p>How many hours per questionnaire? And what would they rather be doing? QuestForge gives them a 90% complete draft to review in 30 minutes instead of building from scratch in 30 hours.</p>
-  </div>
-
-  <div class="obj">
-    <h4>"Is my data safe with you?"</h4>
-    <p>Your documents are encrypted in transit and at rest. Each client's data is fully isolated. We don't train on your data. NDA available on request. Documents deleted 30 days after delivery.</p>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <h2>Stop losing deals to security review delays.</h2>
-  <p>Upload your next questionnaire. Get a complete draft back in hours.</p>
-  <a href="/pricing.html">Get Started &rarr;</a>
-  <div class="price-hint">Starting at $1,200 per questionnaire. No commitment. No subscription required.</div>
-</section>
-
-<footer>
-  &copy; 2026 QuestForge. Security questionnaire automation for B2B SaaS.<br/>
-  <a href="/terms.html" style="color:#3b82f6;text-decoration:none;">Terms</a> &middot;
-  <a href="/privacy.html" style="color:#3b82f6;text-decoration:none;">Privacy</a> &middot;
-  <a href="/refund.html" style="color:#3b82f6;text-decoration:none;">Refunds</a>
-</footer>
-
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Copyright 2026 QuestForge. Human-reviewed questionnaire drafting for B2B SaaS.</span>
+      <div class="footer-links">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund">Refunds</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

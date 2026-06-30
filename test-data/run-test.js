@@ -1,32 +1,53 @@
 const fs = require('fs');
 const path = require('path');
-const FormData = require('form-data');
+const { Blob } = require('buffer');
+
+function fileBlob(filePath, type) {
+  return new Blob([fs.readFileSync(filePath)], { type });
+}
 
 async function runTest() {
-  const form = new FormData();
+  const token = process.env.QUESTFORGE_OPERATOR_TOKEN || process.argv[2];
+  if (!token) {
+    throw new Error('Set QUESTFORGE_OPERATOR_TOKEN or pass the operator token as the first argument.');
+  }
 
+  const form = new FormData();
   form.append('companyName', 'Acme Cloud Technologies');
   form.append('senderName', 'Enterprise Corp');
-  form.append('questionnaire', fs.createReadStream(path.join(__dirname, 'sample-questionnaire.xlsx')), 'sample-questionnaire.xlsx');
-  form.append('documents', fs.createReadStream(path.join(__dirname, 'sample-security-doc.txt')), 'sample-security-doc.txt');
+  form.append(
+    'questionnaire',
+    fileBlob(path.join(__dirname, 'sample-questionnaire.xlsx'), 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+    'sample-questionnaire.xlsx'
+  );
+  form.append(
+    'documents',
+    fileBlob(path.join(__dirname, 'sample-security-doc.txt'), 'text/plain'),
+    'sample-security-doc.txt'
+  );
 
   console.log('Submitting to QuestForge...');
 
   const submitRes = await fetch('http://localhost:3000/api/process', {
     method: 'POST',
+    headers: { 'x-questforge-token': token },
     body: form,
   });
 
   const { jobId, error } = await submitRes.json();
-  if (error) { console.error('Submit error:', error); return; }
+  if (error) {
+    console.error('Submit error:', error);
+    return;
+  }
 
   console.log('Job started:', jobId);
 
-  // Poll for status
   let done = false;
   while (!done) {
     await new Promise(r => setTimeout(r, 3000));
-    const statusRes = await fetch(`http://localhost:3000/api/status/${jobId}`);
+    const statusRes = await fetch(`http://localhost:3000/api/status/${jobId}`, {
+      headers: { 'x-questforge-token': token },
+    });
     const status = await statusRes.json();
     console.log(`[${status.percent || 0}%] ${status.stage}`);
 

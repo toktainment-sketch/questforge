@@ -1,6 +1,7 @@
 const Anthropic = require('@anthropic-ai/sdk');
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-6';
 
 // Flags answers that need human review before delivery
 const LEGAL_FLAGS = [
@@ -56,7 +57,7 @@ ${question}
 Provide a clear, accurate answer based on the documentation above.`;
 
   const message = await client.messages.create({
-    model: 'claude-sonnet-4-6',
+    model: MODEL,
     max_tokens: 600,
     system: systemPrompt,
     messages: [{ role: 'user', content: userPrompt }],
@@ -110,7 +111,7 @@ async function processQuestionnaire(questions, documents, companyName, onProgres
 
 async function generateRebuttalletter(companyName, questionnaireSender, completedCount, flaggedCount) {
   const message = await client.messages.create({
-    model: 'claude-sonnet-4-6',
+    model: MODEL,
     max_tokens: 400,
     messages: [{
       role: 'user',

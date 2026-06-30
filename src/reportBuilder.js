@@ -1,8 +1,7 @@
-const XLSX = require('xlsx');
-const fs = require('fs');
-const path = require('path');
+const writeExcelFile = require('write-excel-file/node');
 
 function buildConfidenceReport(results) {
+  const total = results.length;
   const high = results.filter(r => r.confidence === 'HIGH').length;
   const medium = results.filter(r => r.confidence === 'MEDIUM').length;
   const low = results.filter(r => r.confidence === 'LOW').length;
@@ -10,12 +9,12 @@ function buildConfidenceReport(results) {
   const legalFlags = results.filter(r => r.isLegalFlag).length;
 
   return {
-    total: results.length,
+    total,
     autoAnswered: high + medium,
     needsReview: flagged,
     legalFlags,
     breakdown: { high, medium, low },
-    readyPercent: Math.round(((high + medium) / results.length) * 100),
+    readyPercent: total === 0 ? 0 : Math.round(((high + medium) / total) * 100),
   };
 }
 
@@ -34,54 +33,96 @@ function buildFlaggedItemsList(results) {
     }));
 }
 
-function writeExcelOutput(originalWorkbook, results, outputPath) {
-  // Clone original workbook so we preserve all formatting and structure
-  const wb = XLSX.utils.book_new();
-
-  // Write answers back into original structure
-  results.forEach(result => {
-    if (!result.sheet) return;
-    const ws = originalWorkbook.Sheets[result.sheet];
-    if (!ws) return;
-
-    const cellAddress = XLSX.utils.encode_cell({ r: result.row - 1, c: result.answerCol });
-    ws[cellAddress] = { t: 's', v: result.answer };
-  });
-
-  originalWorkbook.SheetNames.forEach(name => {
-    XLSX.utils.book_append_sheet(wb, originalWorkbook.Sheets[name], name);
-  });
-
-  XLSX.writeFile(wb, outputPath);
+function normalizeCell(value) {
+  if (value === undefined || value === null) return null;
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return value;
+  return String(value);
 }
 
-function writeSummaryReport(results, companyName, coverLetter, outputPath) {
+function headerCell(value) {
+  return {
+    value,
+    fontWeight: 'bold',
+    backgroundColor: '#E8EEF7',
+  };
+}
+
+function titleCell(value) {
+  return {
+    value,
+    fontWeight: 'bold',
+    fontSize: 14,
+  };
+}
+
+function buildColumns(widths) {
+  return widths.map(width => ({ width }));
+}
+
+async function writeExcelOutput(originalWorkbook, results, outputPath) {
+  const sheets = originalWorkbook?.sheets || [];
+  const sheetsByName = new Map(
+    sheets.map(({ sheet, data }) => [sheet, data.map(row => row.map(normalizeCell))])
+  );
+
+  results.forEach(result => {
+    if (!result.sheet) return;
+    const sheetRows = sheetsByName.get(result.sheet);
+    if (!sheetRows) return;
+
+    const rowIndex = result.row - 1;
+    if (!sheetRows[rowIndex]) sheetRows[rowIndex] = [];
+    while (sheetRows[rowIndex].length <= result.answerCol) {
+      sheetRows[rowIndex].push(null);
+    }
+    sheetRows[rowIndex][result.answerCol] = result.answer;
+  });
+
+  const sheetPayload = Array.from(sheetsByName.entries()).map(([sheet, data]) => ({
+    sheet: sheet.slice(0, 31),
+    data,
+    columns: buildColumns([14, 18, 60, 80, 24, 24, 24, 24]),
+    stickyRowsCount: 1,
+  }));
+
+  await writeExcelFile(sheetPayload).toFile(outputPath);
+}
+
+async function writeSummaryReport(results, companyName, coverLetter, outputPath) {
   const report = buildConfidenceReport(results);
   const flagged = buildFlaggedItemsList(results);
 
-  const summarySheet = XLSX.utils.aoa_to_sheet([
-    ['QUESTFORGE, COMPLETION REPORT'],
+  const summarySheet = [
+    [titleCell('QUESTFORGE COMPLETION REPORT')],
     ['Company', companyName],
     ['Date', new Date().toLocaleDateString()],
-    [''],
-    ['SUMMARY'],
+    [],
+    [headerCell('SUMMARY')],
     ['Total Questions', report.total],
-    ['Auto-Answered (High Confidence)', report.breakdown.high],
-    ['Auto-Answered (Medium Confidence)', report.breakdown.medium],
+    ['Auto-Answered, High Confidence', report.breakdown.high],
+    ['Auto-Answered, Medium Confidence', report.breakdown.medium],
     ['Flagged for Human Review', report.needsReview],
     ['Legal/Contractual Flags', report.legalFlags],
     ['Ready to Submit %', `${report.readyPercent}%`],
-    [''],
-    ['COVER LETTER'],
+    [],
+    [headerCell('COVER LETTER')],
     [coverLetter || ''],
-    [''],
-    ['FLAGGED ITEMS, REVIEW BEFORE SUBMITTING'],
-    ['ID', 'Question', 'Draft Answer', 'Reason'],
+    [],
+    [headerCell('FLAGGED ITEMS, REVIEW BEFORE SUBMITTING')],
+    [headerCell('ID'), headerCell('Question'), headerCell('Draft Answer'), headerCell('Reason')],
     ...flagged.map(f => [f.id, f.question, f.draftAnswer, f.reason]),
-  ]);
+  ];
 
-  const allAnswersSheet = XLSX.utils.aoa_to_sheet([
-    ['ID', 'Question', 'Answer', 'Confidence', 'Needs Review', 'Legal Flag'],
+  const allAnswersSheet = [
+    [
+      headerCell('ID'),
+      headerCell('Question'),
+      headerCell('Answer'),
+      headerCell('Confidence'),
+      headerCell('Needs Review'),
+      headerCell('Legal Flag'),
+    ],
     ...results.map(r => [
       r.id,
       r.question,
@@ -90,12 +131,22 @@ function writeSummaryReport(results, companyName, coverLetter, outputPath) {
       r.needsReview ? 'YES' : 'no',
       r.isLegalFlag ? 'YES' : 'no',
     ]),
-  ]);
+  ];
 
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, summarySheet, 'Summary Report');
-  XLSX.utils.book_append_sheet(wb, allAnswersSheet, 'All Answers');
-  XLSX.writeFile(wb, outputPath);
+  await writeExcelFile([
+    {
+      sheet: 'Summary Report',
+      data: summarySheet,
+      columns: buildColumns([28, 90, 90, 70]),
+      stickyRowsCount: 1,
+    },
+    {
+      sheet: 'All Answers',
+      data: allAnswersSheet,
+      columns: buildColumns([24, 80, 100, 16, 16, 16]),
+      stickyRowsCount: 1,
+    },
+  ]).toFile(outputPath);
 }
 
 module.exports = { buildConfidenceReport, buildFlaggedItemsList, writeExcelOutput, writeSummaryReport };

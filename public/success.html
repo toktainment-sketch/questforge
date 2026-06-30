@@ -4,65 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QuestForge | Payment Confirmed</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; display: flex; flex-direction: column; }
-    header { padding: 24px 40px; border-bottom: 1px solid #1e2530; display: flex; align-items: center; gap: 12px; }
-    header h1 { font-size: 1.3rem; font-weight: 700; color: #fff; cursor: pointer; }
-    header span { font-size: 0.8rem; background: #064e3b; color: #34d399; padding: 3px 10px; border-radius: 20px; }
-
-    main { max-width: 640px; margin: 80px auto; padding: 0 24px; text-align: center; }
-    .check { font-size: 4rem; margin-bottom: 16px; }
-    h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
-    .sub { color: #94a3b8; font-size: 1rem; line-height: 1.7; margin-bottom: 40px; }
-
-    .steps { text-align: left; background: #161b27; border: 1px solid #1e2530; border-radius: 12px; padding: 32px; margin-bottom: 32px; }
-    .steps h3 { font-size: 1rem; color: #fff; margin-bottom: 20px; }
-    .step { display: flex; gap: 16px; margin-bottom: 20px; }
-    .step-num { width: 32px; height: 32px; background: #1a3a5c; color: #60a5fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
-    .step-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
-    .step-text strong { color: #fff; }
-
-    .btn { display: inline-block; padding: 14px 32px; background: #3b82f6; color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: background 0.2s; }
-    .btn:hover { background: #2563eb; }
-
-    .note { margin-top: 32px; font-size: 0.8rem; color: #4a5568; }
-  </style>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-
-<header>
-  <h1 onclick="location.href='/'">QuestForge</h1>
-  <span>Payment Confirmed</span>
-</header>
-
-<main>
-  <div class="check">&#10003;</div>
-  <h2>You're in. Let's get your questionnaire done.</h2>
-  <p class="sub">Payment confirmed. Here's what happens next:</p>
-
-  <div class="steps">
-    <h3>Next Steps</h3>
-
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-text"><strong>Upload your questionnaire + security docs.</strong> Click the button below to go to the upload page. You'll need the questionnaire file (Excel, Word, or PDF) and your security documentation (SOC 2 report, pen test, privacy policy, etc.).</div>
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>QuestForge</span>
+      </a>
+      <div class="nav-links">
+        <a href="/pricing">Pricing</a>
+        <span class="status-pill green">Payment confirmed</span>
+      </div>
     </div>
+  </nav>
 
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-text"><strong>We process it.</strong> Our AI reads your documentation and generates answers for every question. Legal and low-confidence items are flagged for your review. This takes minutes, not weeks.</div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-text"><strong>Download your completed questionnaire.</strong> You get the filled-in questionnaire file, a confidence report, flagged items list, and a professional cover letter, ready to submit to your prospect.</div>
-    </div>
-  </div>
-
-  <a href="/app" class="btn">Upload Your Questionnaire Now</a>
-
-  <p class="note">Questions? Reply to your confirmation email or contact us directly.</p>
-</main>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Next steps</p>
+          <h2>Payment confirmed. We will run this as a controlled pilot.</h2>
+          <p>Reply with the intake details below so the engagement can be scoped before any sensitive files are handled.</p>
+        </div>
+        <div class="grid-3 numbered">
+          <div class="panel">
+            <h3>Confirm intake</h3>
+            <p>Send the client company, prospect or customer name, questionnaire type, deadline, and NDA requirement.</p>
+          </div>
+          <div class="panel">
+            <h3>Share files privately</h3>
+            <p>We will agree the file-transfer method and confirm what evidence documents are usable before processing.</p>
+          </div>
+          <div class="panel">
+            <h3>Review delivery package</h3>
+            <p>You receive the draft questionnaire, confidence report, flagged items, and cover note for final approval.</p>
+          </div>
+        </div>
+        <div class="section-actions">
+          <a class="btn" href="mailto:admin@kamtobecreations.com?subject=QuestForge%20Pilot%20Files">Send intake details</a>
+          <a class="btn secondary" href="/privacy">Review data handling</a>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

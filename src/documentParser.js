@@ -2,7 +2,13 @@ const fs = require('fs');
 const path = require('path');
 const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
-const XLSX = require('xlsx');
+const readExcelFile = require('read-excel-file/node');
+
+function normalizeCell(cell) {
+  if (cell === undefined || cell === null) return '';
+  if (cell instanceof Date) return cell.toISOString().slice(0, 10);
+  return cell;
+}
 
 async function parseDocument(filePath) {
   const ext = path.extname(filePath).toLowerCase();
@@ -13,22 +19,30 @@ async function parseDocument(filePath) {
     return { type: 'pdf', text: data.text, pages: data.numpages };
   }
 
-  if (ext === '.docx' || ext === '.doc') {
+  if (ext === '.docx') {
     const result = await mammoth.extractRawText({ path: filePath });
     return { type: 'word', text: result.value };
   }
 
-  if (ext === '.xlsx' || ext === '.xls') {
-    const workbook = XLSX.readFile(filePath);
+  if (ext === '.xlsx') {
+    const sheets = await readExcelFile(filePath, { trim: false });
     const rows = [];
-    workbook.SheetNames.forEach(sheetName => {
-      const sheet = workbook.Sheets[sheetName];
-      const json = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
-      json.forEach((row, rowIndex) => {
-        rows.push({ sheet: sheetName, row: rowIndex + 1, cells: row });
+    const textLines = [];
+
+    sheets.forEach(({ sheet, data }) => {
+      data.forEach((row, rowIndex) => {
+        const cells = row.map(normalizeCell);
+        rows.push({
+          sheet,
+          row: rowIndex + 1,
+          cells,
+        });
+        const line = cells.filter(cell => cell !== '').join(' | ');
+        if (line) textLines.push(`${sheet} row ${rowIndex + 1}: ${line}`);
       });
     });
-    return { type: 'excel', rows, workbook };
+
+    return { type: 'excel', rows, workbook: { sheets }, text: textLines.join('\n') };
   }
 
   if (ext === '.txt') {
@@ -42,25 +56,24 @@ async function parseDocument(filePath) {
 function extractQuestionsFromExcel(parsedDoc) {
   const questions = [];
   parsedDoc.rows.forEach(({ sheet, row, cells }) => {
-    // Look for rows where a cell looks like a question (ends with ? or is long text)
     cells.forEach((cell, colIndex) => {
       if (typeof cell === 'string' && cell.trim().length > 20) {
+        const lower = cell.toLowerCase();
         const isQuestion = cell.includes('?') ||
-          cell.toLowerCase().includes('do you') ||
-          cell.toLowerCase().includes('does your') ||
-          cell.toLowerCase().includes('describe') ||
-          cell.toLowerCase().includes('provide') ||
-          cell.toLowerCase().includes('explain') ||
-          cell.toLowerCase().includes('list') ||
-          cell.toLowerCase().includes('what is') ||
-          cell.toLowerCase().includes('how do') ||
-          cell.toLowerCase().includes('please') ||
-          cell.toLowerCase().includes('are there') ||
-          cell.toLowerCase().includes('have you');
+          lower.includes('do you') ||
+          lower.includes('does your') ||
+          lower.includes('describe') ||
+          lower.includes('provide') ||
+          lower.includes('explain') ||
+          lower.includes('list') ||
+          lower.includes('what is') ||
+          lower.includes('how do') ||
+          lower.includes('please') ||
+          lower.includes('are there') ||
+          lower.includes('have you');
 
         if (isQuestion) {
-          // Find an empty adjacent cell (likely the answer field)
-          const answerColIndex = cells.findIndex((c, i) => i > colIndex && (c === '' || c === null));
+          const answerColIndex = cells.findIndex((c, i) => i > colIndex && (c === '' || c === null || c === undefined));
           questions.push({
             id: `${sheet}_R${row}_C${colIndex + 1}`,
             question: cell.trim(),
@@ -81,18 +94,19 @@ function extractQuestionsFromText(text) {
   const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
   const questions = [];
   lines.forEach((line, index) => {
+    const lower = line.toLowerCase();
     const isQuestion =
       line.endsWith('?') ||
       /^\d+[\.\)]\s/.test(line) ||
-      line.toLowerCase().startsWith('do you') ||
-      line.toLowerCase().startsWith('does your') ||
-      line.toLowerCase().startsWith('describe') ||
-      line.toLowerCase().startsWith('provide') ||
-      line.toLowerCase().startsWith('please') ||
-      line.toLowerCase().startsWith('what is') ||
-      line.toLowerCase().startsWith('how do') ||
-      line.toLowerCase().startsWith('are there') ||
-      line.toLowerCase().startsWith('have you');
+      lower.startsWith('do you') ||
+      lower.startsWith('does your') ||
+      lower.startsWith('describe') ||
+      lower.startsWith('provide') ||
+      lower.startsWith('please') ||
+      lower.startsWith('what is') ||
+      lower.startsWith('how do') ||
+      lower.startsWith('are there') ||
+      lower.startsWith('have you');
 
     if (isQuestion && line.length > 15) {
       questions.push({
