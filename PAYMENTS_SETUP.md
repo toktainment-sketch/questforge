@@ -6,6 +6,10 @@ Status as of 2026-06-30:
 - Live Paddle checkout opens successfully from the QuestForgeAI pricing page.
 - Default payment link is set in Paddle to `https://questforgeai.ai/pricing`.
 - Products and prices have been created in the Paddle catalog.
+- Paddle webhook destination is active at
+  `https://questforgeai.ai/api/paddle/webhook`.
+- Render has `PADDLE_WEBHOOK_SECRET` set. A signed live webhook test returned
+  `200 {"received":true}` on 2026-06-30.
 - Paddle payout setup is paused until Wise Business completes review for
   KAMTOBE CREATIONS LIMITED and provides usable business account details.
 
@@ -35,12 +39,7 @@ PADDLE_CLIENT_TOKEN=<copy from Paddle > Developer Tools > Authentication > Clien
 PADDLE_PRICE_STANDARD=pri_01kwb8g043gthn3weahbzcb7pq
 PADDLE_PRICE_LARGE=pri_01kwb8h6vnzhe6bzaj921attjp
 PADDLE_PRICE_MONTHLY=pri_01kwb8hv88py9cp7qs38kz2ctp
-```
-
-Set this after creating the Paddle notification endpoint:
-
-```text
-PADDLE_WEBHOOK_SECRET=<create from Paddle notifications/webhook endpoint>
+PADDLE_WEBHOOK_SECRET=<set in Render from Paddle notification destination>
 ```
 
 Do not store API keys, webhook secrets, personal IDs, or bank details in this file.

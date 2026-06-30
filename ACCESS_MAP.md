@@ -28,8 +28,9 @@ here. Store those in the secrets vault/password manager.
 | Approved domain | questforgeai.ai |
 | Default payment link | https://questforgeai.ai/pricing |
 | Products/prices | See `PAYMENTS_SETUP.md` |
-| Render env vars set | `PADDLE_ENVIRONMENT`, `PADDLE_CLIENT_TOKEN`, `PADDLE_PRICE_STANDARD`, `PADDLE_PRICE_LARGE`, `PADDLE_PRICE_MONTHLY` |
-| Not yet set | `PADDLE_WEBHOOK_SECRET` after creating Paddle notification endpoint |
+| Render env vars set | `PADDLE_ENVIRONMENT`, `PADDLE_CLIENT_TOKEN`, `PADDLE_PRICE_STANDARD`, `PADDLE_PRICE_LARGE`, `PADDLE_PRICE_MONTHLY`, `PADDLE_WEBHOOK_SECRET` |
+| Paddle webhook | Active destination: `https://questforgeai.ai/api/paddle/webhook`. Signed live test returned `200 {"received":true}` on 2026-06-30. |
+| Not yet set | Nothing currently known for Paddle checkout/webhook. Payout details remain separate. |
 | Payout status | Paused until Wise Business review completes and business account details are available for KAMTOBE CREATIONS LIMITED. Do not forget to return to Paddle Payout Settings. |
 
 ## Render
