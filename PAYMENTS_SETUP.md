@@ -10,6 +10,10 @@ Status as of 2026-06-30:
   `https://questforgeai.ai/api/paddle/webhook`.
 - Render has `PADDLE_WEBHOOK_SECRET` set. A signed live webhook test returned
   `200 {"received":true}` on 2026-06-30.
+- Paddle email received on 2026-06-30 said the account is live and payments can
+  be taken, but domain review could not locate Pricing, Terms and Conditions,
+  Privacy Policy, and Refund Policy URLs. Commit `d4b89fb` made these links
+  explicit in public footers and added `sitemap.xml` and `robots.txt`.
 - Paddle payout setup is paused until Wise Business completes review for
   KAMTOBE CREATIONS LIMITED and provides usable business account details.
 
