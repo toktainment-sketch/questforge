@@ -6,6 +6,16 @@ Status as of 2026-06-30:
 - Live Paddle checkout opens successfully from the QuestForgeAI pricing page.
 - Default payment link is set in Paddle to `https://questforgeai.ai/pricing`.
 - Products and prices have been created in the Paddle catalog.
+- Paddle payout setup is paused until Wise Business completes review for
+  KAMTOBE CREATIONS LIMITED and provides usable business account details.
+
+## Must-Close Reminder
+
+Do not mark payment operations complete until Paddle payouts are finished.
+Payout setup was suspended because Wise Business is reviewing the KAMTOBE
+CREATIONS LIMITED business account. Once Wise approves the account, return to
+Paddle > Payout Settings and enter the Wise business payout details, then save
+and verify the payout configuration.
 
 ## Paddle Products
 

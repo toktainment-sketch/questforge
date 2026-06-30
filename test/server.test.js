@@ -1,10 +1,12 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { spawn } = require('node:child_process');
+const crypto = require('node:crypto');
 
 const PORT = 3299;
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 const TOKEN = 'server-test-token';
+const PADDLE_WEBHOOK_SECRET = 'test-webhook-secret';
 
 function startServer() {
   const child = spawn(process.execPath, ['server.js'], {
@@ -18,6 +20,7 @@ function startServer() {
       PADDLE_PRICE_STANDARD: '',
       PADDLE_PRICE_LARGE: '',
       PADDLE_PRICE_MONTHLY: '',
+      PADDLE_WEBHOOK_SECRET,
     },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -87,6 +90,52 @@ test('server enforces pilot gate and security headers', async () => {
       headers: { 'x-questforge-token': TOKEN },
     });
     assert.equal(processNoKey.status, 503);
+  } finally {
+    server.kill('SIGTERM');
+    await new Promise(resolve => server.once('exit', resolve));
+  }
+});
+
+test('server verifies Paddle webhook signatures', async () => {
+  const server = startServer();
+
+  try {
+    await waitForHealth();
+
+    const body = JSON.stringify({
+      event_type: 'transaction.completed',
+      data: {
+        custom_data: { tier: 'standard' },
+        customer: { email: 'buyer@example.com' },
+      },
+    });
+
+    const invalid = await fetch(`${BASE_URL}/api/paddle/webhook`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'paddle-signature': 'ts=1;h1=bad',
+      },
+      body,
+    });
+    assert.equal(invalid.status, 401);
+
+    const ts = Math.floor(Date.now() / 1000);
+    const h1 = crypto
+      .createHmac('sha256', PADDLE_WEBHOOK_SECRET)
+      .update(`${ts}:${body}`)
+      .digest('hex');
+
+    const valid = await fetch(`${BASE_URL}/api/paddle/webhook`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'paddle-signature': `ts=${ts};h1=${h1}`,
+      },
+      body,
+    });
+    assert.equal(valid.status, 200);
+    assert.deepEqual(await valid.json(), { received: true });
   } finally {
     server.kill('SIGTERM');
     await new Promise(resolve => server.once('exit', resolve));
