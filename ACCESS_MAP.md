@@ -24,7 +24,7 @@ here. Store those in the secrets vault/password manager.
 | Account / business shown | KAMTOBE CREATIONS LIMITED |
 | Login email | Needs confirmation. User indicated it is not `toktainment@gmail.com`. |
 | Login method | Browser session currently active in Chrome. Password stays with user/vault. |
-| Current dashboard status | Get Started 3/5. Domain approved. Business verification still appears in progress. |
+| Current dashboard status | Get Started 4/4. Verification passed. Paddle says the account can now collect payments. |
 | Approved domain | questforgeai.ai |
 | Default payment link | https://questforgeai.ai/pricing |
 | Products/prices | See `PAYMENTS_SETUP.md` |
@@ -102,4 +102,4 @@ here. Store those in the secrets vault/password manager.
 | Live pricing page | https://questforgeai.ai/pricing |
 | App payment provider | Paddle |
 | API readiness | `/api/payment-config` reports Paddle ready after Render env setup. |
-| Current blocker | Paddle checkout opens but Paddle displays its own error until account/business verification fully clears. |
+| Current blocker | None for checkout opening. Live Paddle checkout opens successfully from `/pricing`. Payout details still need to be confirmed separately before relying on withdrawals. |

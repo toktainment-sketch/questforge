@@ -2,8 +2,8 @@
 
 Status as of 2026-06-30:
 
-- Paddle vendor dashboard still shows business verification as "In progress".
-- Domain/payment setup work can continue while verification completes.
+- Paddle vendor dashboard shows "Verification passed".
+- Live Paddle checkout opens successfully from the QuestForge pricing page.
 - Default payment link is set in Paddle to `https://questforgeai.ai/pricing`.
 - Products and prices have been created in the Paddle catalog.
 
