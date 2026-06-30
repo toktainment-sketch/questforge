@@ -1,9 +1,9 @@
-# QuestForge Paddle Setup
+# QuestForgeAI Paddle Setup
 
 Status as of 2026-06-30:
 
 - Paddle vendor dashboard shows "Verification passed".
-- Live Paddle checkout opens successfully from the QuestForge pricing page.
+- Live Paddle checkout opens successfully from the QuestForgeAI pricing page.
 - Default payment link is set in Paddle to `https://questforgeai.ai/pricing`.
 - Products and prices have been created in the Paddle catalog.
 
@@ -11,9 +11,9 @@ Status as of 2026-06-30:
 
 | Tier | Paddle product | Price | Billing | Environment variable |
 | --- | --- | ---: | --- | --- |
-| Standard | QuestForge Standard | USD 1,200 | One-time | `PADDLE_PRICE_STANDARD=pri_01kwb8g043gthn3weahbzcb7pq` |
-| Large | QuestForge Large | USD 1,800 | One-time | `PADDLE_PRICE_LARGE=pri_01kwb8h6vnzhe6bzaj921attjp` |
-| Monthly | QuestForge Monthly | USD 4,500 | Monthly recurring | `PADDLE_PRICE_MONTHLY=pri_01kwb8hv88py9cp7qs38kz2ctp` |
+| Standard | QuestForgeAI Standard | USD 1,200 | One-time | `PADDLE_PRICE_STANDARD=pri_01kwb8g043gthn3weahbzcb7pq` |
+| Large | QuestForgeAI Large | USD 1,800 | One-time | `PADDLE_PRICE_LARGE=pri_01kwb8h6vnzhe6bzaj921attjp` |
+| Monthly | QuestForgeAI Monthly | USD 4,500 | Monthly recurring | `PADDLE_PRICE_MONTHLY=pri_01kwb8hv88py9cp7qs38kz2ctp` |
 
 ## Required Render Environment
 

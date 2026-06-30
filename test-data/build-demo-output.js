@@ -2,7 +2,7 @@ const writeExcelFile = require('write-excel-file/node');
 const path = require('path');
 
 const demoAnswers = [
-  ['ID', 'Category', 'Question', 'QuestForge Answer', 'Confidence', 'Review Flag'],
+  ['ID', 'Category', 'Question', 'QuestForgeAI Answer', 'Confidence', 'Review Flag'],
   ['Q1', 'General', 'Please describe your company, including year founded, headquarters location, and number of employees.',
     'Acme Cloud Technologies is a B2B SaaS company providing workforce analytics software to enterprise clients. Founded in 2019, headquartered in Austin, TX, with a remote engineering team across the US and UK. 85 employees.',
     'HIGH', ''],
@@ -36,7 +36,7 @@ const demoAnswers = [
 ];
 
 const summaryData = [
-  ['QUESTFORGE SAMPLE COMPLETION REPORT'],
+  ['QuestForgeAI SAMPLE COMPLETION REPORT'],
   [],
   ['Company', 'Acme Cloud Technologies'],
   ['Prospect', 'Enterprise Corp'],
@@ -56,11 +56,11 @@ const summaryData = [
   ['Q9', 'RPO and RTO commitments', 'Verify RPO/RTO against SLA terms'],
   ['Q10', 'Subprocessor list', 'Verify current approved list'],
   [],
-  ['NOTE', 'This sample demonstrates the format of a human-reviewed QuestForge pilot deliverable.'],
+  ['NOTE', 'This sample demonstrates the format of a human-reviewed QuestForgeAI pilot deliverable.'],
 ];
 
 async function main() {
-  const outputPath = path.join(__dirname, '..', 'output', 'QuestForge_Sample_Output.xlsx');
+  const outputPath = path.join(__dirname, '..', 'output', 'QuestForgeAI_Sample_Output.xlsx');
   await writeExcelFile([
     {
       sheet: 'Completed Questionnaire',

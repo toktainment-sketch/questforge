@@ -67,9 +67,9 @@ if (canvas) {
     ctx.clearRect(0, 0, width, height);
 
     const grad = ctx.createLinearGradient(0, 0, width, height);
-    grad.addColorStop(0, '#10141d');
-    grad.addColorStop(0.48, '#172033');
-    grad.addColorStop(1, '#0d302a');
+    grad.addColorStop(0, '#0d1320');
+    grad.addColorStop(0.48, '#172035');
+    grad.addColorStop(1, '#102b28');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
 
@@ -92,7 +92,7 @@ if (canvas) {
     drawDocument(right, 78 + Math.sin(frame) * 8, 330, 230, frame);
     drawDocument(right + 130, 280 + Math.cos(frame * 0.8) * 10, 290, 202, frame + 1.8);
 
-    drawNode(right - 46, 336, 'SOC 2 evidence', 'rgba(95,141,255,0.80)');
+    drawNode(right - 46, 336, 'SOC 2 evidence', 'rgba(86,126,224,0.82)');
     drawNode(right + 296, 170, 'legal review', 'rgba(255,190,84,0.78)');
     drawNode(right + 40, 542, 'client approval', 'rgba(83,209,177,0.78)');
 

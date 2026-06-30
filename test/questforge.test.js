@@ -81,7 +81,7 @@ test('writeSummaryReport writes a parseable xlsx report', async () => {
   assert.equal(fs.existsSync(outputPath), true);
   const parsed = await parseDocument(outputPath);
   assert.equal(parsed.type, 'excel');
-  assert.ok(parsed.rows.some(row => row.cells.includes('QUESTFORGE COMPLETION REPORT')));
+  assert.ok(parsed.rows.some(row => row.cells.includes('QUESTFORGEAI COMPLETION REPORT')));
 });
 
 test('writeExcelOutput writes generated answers into the questionnaire sheet', async () => {

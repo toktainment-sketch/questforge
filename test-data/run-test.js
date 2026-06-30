@@ -26,7 +26,7 @@ async function runTest() {
     'sample-security-doc.txt'
   );
 
-  console.log('Submitting to QuestForge...');
+  console.log('Submitting to QuestForgeAI...');
 
   const submitRes = await fetch('http://localhost:3000/api/process', {
     method: 'POST',

@@ -104,7 +104,7 @@ function requirePilotAccess(req, res, next) {
 
   if (!process.env.QUESTFORGE_OPERATOR_TOKEN) {
     return res.status(503).json({
-      error: 'QuestForge upload processing is disabled for public access. Set QUESTFORGE_OPERATOR_TOKEN for operator-only pilot processing.',
+      error: 'QuestForgeAI upload processing is disabled for public access. Set QUESTFORGE_OPERATOR_TOKEN for operator-only pilot processing.',
     });
   }
 
@@ -142,14 +142,14 @@ function sendPilotAccessPage(res) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QuestForge Pilot Access</title>
+  <title>QuestForgeAI Pilot Access</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body class="app-body">
   <main class="legal-layout">
     <article class="legal-panel">
     <p class="section-kicker">Private pilot</p>
-    <h1>QuestForge is in private pilot mode.</h1>
+    <h1>QuestForgeAI is in private pilot mode.</h1>
     <p>The upload processor is reserved for operator-reviewed concierge engagements. To start a questionnaire, contact <a href="mailto:admin@kamtobecreations.com">admin@kamtobecreations.com</a>.</p>
     </article>
    </main>
@@ -170,7 +170,7 @@ function cleanupExpiredJobs() {
       const stat = fs.statSync(target);
       if (stat.mtimeMs < cutoff) {
         fs.rmSync(target, { recursive: true, force: true });
-        console.log(`Deleted expired QuestForge job folder: ${target}`);
+        console.log(`Deleted expired QuestForgeAI job folder: ${target}`);
       }
     }
   }
@@ -195,7 +195,7 @@ function removeJobFolders(jobId) {
 function requireAnthropicKey(req, res, next) {
   if (!process.env.ANTHROPIC_API_KEY) {
     return res.status(503).json({
-      error: 'QuestForge processing is not configured. Set ANTHROPIC_API_KEY before running jobs.',
+      error: 'QuestForgeAI processing is not configured. Set ANTHROPIC_API_KEY before running jobs.',
     });
   }
   next();
@@ -366,7 +366,7 @@ app.post('/api/process', rateLimit('process', 30, 60 * 60 * 1000), requirePilotA
   try {
     const statusFile = path.join(outputDir, 'status.json');
     const writeStatus = (data) => fs.writeFileSync(statusFile, JSON.stringify(data, null, 2));
-    const safeCompanyName = sanitizeFileStem(companyName, 'QuestForge_Client');
+    const safeCompanyName = sanitizeFileStem(companyName, 'QuestForgeAI_Client');
 
     writeStatus({ stage: 'Parsing documents...', percent: 5 });
 
@@ -430,7 +430,7 @@ app.post('/api/process', rateLimit('process', 30, 60 * 60 * 1000), requirePilotA
 
     writeStatus({ stage: 'Building output files...', percent: 90 });
 
-    const summaryPath = path.join(outputDir, `${safeCompanyName}_QuestForge_Report.xlsx`);
+    const summaryPath = path.join(outputDir, `${safeCompanyName}_QuestForgeAI_Report.xlsx`);
     await writeSummaryReport(results, companyName, coverLetter, summaryPath);
 
     let completedQPath = null;
@@ -488,7 +488,7 @@ ensureWorkspaceDirs();
 startRetentionCleanup();
 
 app.listen(PORT, () => {
-  console.log(`\nQuestForge running at http://localhost:${PORT}`);
+  console.log(`\nQuestForgeAI running at http://localhost:${PORT}`);
   console.log(`   API key loaded: ${!!process.env.ANTHROPIC_API_KEY}`);
   console.log(`   Pilot access configured: ${!!process.env.QUESTFORGE_OPERATOR_TOKEN}\n`);
 });

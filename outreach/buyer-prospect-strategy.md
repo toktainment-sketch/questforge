@@ -1,4 +1,4 @@
-# QuestForge, First 50 Buyer Prospect List Strategy
+# QuestForgeAI, First 50 Buyer Prospect List Strategy
 
 ## IDEAL CUSTOMER PROFILE (ICP)
 
@@ -35,7 +35,7 @@
 2. Apply title + company size + geography filters
 3. Add keyword filter: company description contains "enterprise"
 4. Sort by "recently posted" to find active LinkedIn users (more likely to respond)
-5. Save 25 leads to a "QuestForge Prospects" list
+5. Save 25 leads to a "QuestForgeAI Prospects" list
 
 ---
 
@@ -165,5 +165,5 @@ Create a Google Sheet with these columns:
 - **LinkedIn Sales Navigator**, $99/month (free trial available)
 - **Apollo.io**, free tier gives 50 email credits/month
 - **Google Sheets**, prospect tracker
-- **Gmail**, QuestForge email for outreach
+- **Gmail**, QuestForgeAI email for outreach
 - **Calendly**, free tier for booking calls

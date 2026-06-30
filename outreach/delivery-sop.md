@@ -1,8 +1,8 @@
-# QuestForge Concierge Pilot SOP
+# QuestForgeAI Concierge Pilot SOP
 
 ## Operating Position
 
-QuestForge is a controlled, human-reviewed concierge pilot. Do not invite clients
+QuestForgeAI is a controlled, human-reviewed concierge pilot. Do not invite clients
 to a public upload flow. The `/app` workspace is for the operator only and must
 be protected by `QUESTFORGE_OPERATOR_TOKEN`.
 
@@ -10,31 +10,28 @@ be protected by `QUESTFORGE_OPERATOR_TOKEN`.
 
 ### Trigger
 
-Client requests a pilot and payment is confirmed through an approved payment
-route. For QuestForge B2B pilots, the intended route is Payoneer Request a
-Payment after Payoneer KYC is approved.
-
-Until Payoneer is approved, do not treat Payoneer as live. Use only an owner
-approved pilot exception or another confirmed payment route.
+Client requests a pilot and payment is confirmed through the approved Paddle
+checkout, an owner-approved invoice route, or a documented pilot exception.
+For the public QuestForgeAI pricing page, Paddle is the live checkout provider.
 
 ### Checklist
 
 - Confirm client company, requester, prospect/customer, deadline, and plan.
 - Confirm the questionnaire format and approximate question count.
 - Confirm what supporting documents they can provide.
-- Confirm payment status. "Paid" means funds are received/available in the
-  payment provider balance, not merely that a request was sent.
+- Confirm payment status. "Paid" means the Paddle transaction is completed or
+  settled, or funds are received through another approved payment route.
 - Offer NDA before receiving sensitive files.
 - Confirm file-transfer method and retention schedule.
 - Log engagement in the tracker before files are processed.
 
 ### Intake Email Template
 
-Subject: QuestForge pilot intake, next steps
+Subject: QuestForgeAI pilot intake, next steps
 
 Hi {{firstName}},
 
-Thanks for starting a QuestForge pilot. Before we process anything, please reply
+Thanks for starting a QuestForgeAI pilot. Before we process anything, please reply
 with:
 
 - Company name to use in the questionnaire.
@@ -47,7 +44,7 @@ Once confirmed, we will send file-transfer instructions and return a reviewed
 draft package within the agreed turnaround window.
 
 Best,
-QuestForge Team
+QuestForgeAI Team
 
 ## 2. File Handling
 
@@ -92,7 +89,7 @@ QuestForge Team
 
 ## 4. Human QA
 
-QuestForge output is never auto-submitted. QA is mandatory.
+QuestForgeAI output is never auto-submitted. QA is mandatory.
 
 ### Review Checklist
 
@@ -115,14 +112,14 @@ QuestForge output is never auto-submitted. QA is mandatory.
 
 ### Delivery Email Template
 
-Subject: Your QuestForge questionnaire draft is ready
+Subject: Your QuestForgeAI questionnaire draft is ready
 
 Hi {{firstName}},
 
-Your QuestForge draft package is ready. Attached:
+Your QuestForgeAI draft package is ready. Attached:
 
 - Draft questionnaire response file.
-- QuestForge report with confidence scores and flagged items.
+- QuestForgeAI report with confidence scores and flagged items.
 - Cover note draft.
 
 Please review the flagged items before submitting to your prospect. These are
@@ -132,7 +129,7 @@ final wording.
 If you want to walk through the output, reply and we can schedule a short call.
 
 Best,
-QuestForge Team
+QuestForgeAI Team
 
 ## 6. Follow-Up
 

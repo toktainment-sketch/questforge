@@ -94,7 +94,7 @@ async function writeSummaryReport(results, companyName, coverLetter, outputPath)
   const flagged = buildFlaggedItemsList(results);
 
   const summarySheet = [
-    [titleCell('QUESTFORGE COMPLETION REPORT')],
+    [titleCell('QUESTFORGEAI COMPLETION REPORT')],
     ['Company', companyName],
     ['Date', new Date().toLocaleDateString()],
     [],

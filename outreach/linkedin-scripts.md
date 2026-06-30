@@ -1,4 +1,4 @@
-# QuestForge LinkedIn Outreach Scripts
+# QuestForgeAI LinkedIn Outreach Scripts
 
 **Target:** VP Sales, Head of Revenue, CEO, CISO at B2B SaaS companies.
 **Goal:** Start a conversation about one controlled pilot.
@@ -19,7 +19,7 @@ Hi {{firstName}}, we help security teams reduce questionnaire first-draft work w
 Thanks for connecting, {{firstName}}. Quick question: when a prospect sends a
 custom security questionnaire, what is the current turnaround on your team?
 
-QuestForge creates a reviewed first draft from your existing security
+QuestForgeAI creates a reviewed first draft from your existing security
 documentation, with legal and low-evidence items flagged before submission. Happy
 to share a sample if that is relevant to {{companyName}}.
 
@@ -43,7 +43,7 @@ docs, prior questionnaire answers.
 The hard part is turning that evidence into the buyer's custom spreadsheet,
 without inventing claims or missing legal-risk questions.
 
-That is what we are building QuestForge for: reviewed first drafts, confidence
+That is what we are building QuestForgeAI for: reviewed first drafts, confidence
 notes, and clear flags for security/legal review.
 
 If your team handles repeated enterprise security reviews, I am happy to share a
@@ -51,7 +51,7 @@ sample output.
 
 ## LinkedIn Post, Pilot
 
-We are opening a small QuestForge concierge pilot for B2B SaaS teams dealing
+We are opening a small QuestForgeAI concierge pilot for B2B SaaS teams dealing
 with security questionnaires.
 
 The pilot package:

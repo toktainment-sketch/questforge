@@ -1,4 +1,4 @@
-# QuestForge Cold Email Campaign
+# QuestForgeAI Cold Email Campaign
 
 **Target:** VP Sales, Head of Revenue, CEO, CISO at B2B SaaS companies.
 **Goal:** Book a pilot call or get permission to review one active questionnaire.
@@ -13,7 +13,7 @@ When enterprise buyers send a custom security questionnaire, the work often
 lands between sales, security, and legal. The deal waits while someone rebuilds
 answers from SOC 2 reports, policies, prior questionnaires, and internal docs.
 
-QuestForge helps with that first draft. We turn your existing documentation into
+QuestForgeAI helps with that first draft. We turn your existing documentation into
 a reviewed questionnaire response package, with confidence notes and legal or
 low-evidence items flagged for your team.
 
@@ -23,7 +23,7 @@ Worth a short call if {{companyName}} has a questionnaire in motion this quarter
 
 Best,
 {{yourName}}
-QuestForge
+QuestForgeAI
 
 ## Email 2, Follow-Up
 
@@ -34,7 +34,7 @@ Hi {{firstName}},
 Quick question: when a prospect sends a large SIG, CAIQ, or custom security
 spreadsheet, who owns the response at {{companyName}}?
 
-We built QuestForge for teams that have the security evidence but lose too much
+We built QuestForgeAI for teams that have the security evidence but lose too much
 time turning it into buyer-specific answers. The output is a draft package for
 your team to review, not an auto-submission.
 
@@ -48,7 +48,7 @@ If this is relevant, I can show a sample output or discuss a controlled pilot.
 
 Hi {{firstName}},
 
-I can send a sample QuestForge output if helpful.
+I can send a sample QuestForgeAI output if helpful.
 
 The package includes:
 
@@ -64,7 +64,7 @@ this can take a painful first-draft task off the critical path.
 Open to a 15-minute conversation?
 
 {{yourName}}
-QuestForge
+QuestForgeAI
 
 ## Personalization Notes
 

@@ -1,4 +1,4 @@
-# QuestForge Access Map
+# QuestForgeAI Access Map
 
 Last updated: 2026-06-30
 
@@ -84,7 +84,7 @@ here. Store those in the secrets vault/password manager.
 | --- | --- |
 | Site | https://dashboard.flutterwave.com |
 | Intended business | KAMTOBE CREATIONS LIMITED |
-| Status | Signup was blocked by Flutterwave business-name validation. Not active for QuestForge checkout. |
+| Status | Signup was blocked by Flutterwave business-name validation. Not active for QuestForgeAI checkout. |
 | Login email | Needs confirmation if revisited. |
 
 ## Wise
@@ -92,10 +92,10 @@ here. Store those in the secrets vault/password manager.
 | Item | Details |
 | --- | --- |
 | Site | https://wise.com |
-| Status from handover | Personal profile created; business onboarding started then abandoned. Not active for QuestForge checkout. |
+| Status from handover | Personal profile created; business onboarding started then abandoned. Not active for QuestForgeAI checkout. |
 | Login email | Needs confirmation if revisited. |
 
-## QuestForge Live Payment State
+## QuestForgeAI Live Payment State
 
 | Item | Details |
 | --- | --- |

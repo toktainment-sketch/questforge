@@ -1,25 +1,25 @@
 :root {
-  --bg: #f6f7fb;
-  --bg-strong: #ecf0f6;
+  --bg: #f7f8fb;
+  --bg-strong: #eceff5;
   --surface: #ffffff;
   --surface-soft: #f9fafc;
-  --ink: #121722;
-  --ink-soft: #2d3646;
-  --muted: #657084;
-  --muted-strong: #4d586a;
-  --line: #dce2ec;
-  --line-strong: #c8d0dc;
-  --accent: #335cff;
-  --accent-strong: #2446cf;
-  --accent-soft: #e8edff;
-  --green: #087a63;
-  --green-soft: #e2f4ef;
-  --amber: #a96b00;
-  --amber-soft: #fff2d8;
+  --ink: #111827;
+  --ink-soft: #283449;
+  --muted: #677285;
+  --muted-strong: #4b5567;
+  --line: #dde3ec;
+  --line-strong: #c5cedb;
+  --accent: #1f4fd8;
+  --accent-strong: #173aa3;
+  --accent-soft: #eaf0ff;
+  --green: #126c5a;
+  --green-soft: #e4f3ee;
+  --amber: #8c5b12;
+  --amber-soft: #fff3dc;
   --red: #b42318;
   --red-soft: #ffe7e4;
-  --dark: #10141d;
-  --dark-2: #171d28;
+  --dark: #0d1320;
+  --dark-2: #151d2b;
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 10px;
@@ -92,7 +92,7 @@ input {
   display: inline-grid;
   place-items: center;
   color: #ffffff;
-  background: linear-gradient(135deg, var(--ink), var(--accent));
+  background: linear-gradient(135deg, #0d1320, var(--accent));
   box-shadow: var(--shadow-sm);
 }
 
@@ -199,8 +199,8 @@ button.btn:hover {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(16, 20, 29, 0.96), rgba(16, 20, 29, 0.72) 54%, rgba(16, 20, 29, 0.36)),
-    linear-gradient(180deg, rgba(51, 92, 255, 0.18), rgba(8, 122, 99, 0.10));
+    linear-gradient(90deg, rgba(13, 19, 32, 0.96), rgba(13, 19, 32, 0.74) 54%, rgba(13, 19, 32, 0.38)),
+    linear-gradient(180deg, rgba(31, 79, 216, 0.20), rgba(18, 108, 90, 0.10));
   pointer-events: none;
 }
 

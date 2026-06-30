@@ -1,4 +1,4 @@
-// QuestForge payments - Paddle Billing
+// QuestForgeAI payments - Paddle Billing
 //
 // Paddle is the Merchant of Record for the public checkout flow. The public
 // pricing page can open Paddle Checkout when these production values are set:
@@ -15,21 +15,21 @@ const SUPPORTED_ENVIRONMENTS = new Set(['production', 'sandbox']);
 
 const PRODUCTS = {
   standard: {
-    name: 'QuestForge - Standard (up to 300 questions)',
+    name: 'QuestForgeAI - Standard (up to 300 questions)',
     price: 1200_00,
     currency: 'USD',
     description: 'Human-reviewed questionnaire draft package, confidence report, flagged items, and cover note. 24-hour target after usable files are received.',
     priceEnv: 'PADDLE_PRICE_STANDARD',
   },
   large: {
-    name: 'QuestForge - Large (300-600 questions)',
+    name: 'QuestForgeAI - Large (300-600 questions)',
     price: 1800_00,
     currency: 'USD',
     description: 'Human-reviewed draft package for larger questionnaires, including formatting QA and flagged items. 48-hour target after usable files are received.',
     priceEnv: 'PADDLE_PRICE_LARGE',
   },
   monthly: {
-    name: 'QuestForge - Monthly Unlimited',
+    name: 'QuestForgeAI - Monthly Unlimited',
     price: 4500_00,
     currency: 'USD',
     description: 'Recurring concierge questionnaire support, reusable answer library maintenance, and priority handling.',

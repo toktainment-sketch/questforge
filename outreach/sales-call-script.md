@@ -1,4 +1,4 @@
-# QuestForge Sales Call Script
+# QuestForgeAI Sales Call Script
 
 **Call length:** 15-20 minutes
 **Goal:** Qualify the pain, explain the controlled pilot, close on one paid
@@ -6,7 +6,7 @@ questionnaire engagement.
 
 ## Opening
 
-"Thanks for the time, {{firstName}}. Before I describe QuestForge, I want to
+"Thanks for the time, {{firstName}}. Before I describe QuestForgeAI, I want to
 understand whether this is actually painful for you.
 
 When a prospect sends a SIG, CAIQ, or custom security questionnaire, what happens
@@ -24,7 +24,7 @@ next? Who owns it, how long does it take, and where does it usually get stuck?"
 
 ## Positioning
 
-"QuestForge is a concierge pilot for security questionnaire first drafts.
+"QuestForgeAI is a concierge pilot for security questionnaire first drafts.
 
 You provide the questionnaire and supporting security documentation. We run the
 documents through an AI-assisted drafting workflow, then a human operator reviews
@@ -46,13 +46,13 @@ team approves final wording before anything goes to the buyer."
 
 ### "We have Vanta / Drata."
 
-"Keep it. Those tools are useful for controls and trust centers. QuestForge is
+"Keep it. Those tools are useful for controls and trust centers. QuestForgeAI is
 for the custom spreadsheet or questionnaire a buyer sends when they want answers
 in their own format."
 
 ### "Our security team handles this."
 
-"That may still be the right owner. QuestForge is meant to reduce the blank-page
+"That may still be the right owner. QuestForgeAI is meant to reduce the blank-page
 work so your security team reviews and corrects a structured draft instead of
 building everything from scratch."
 
