@@ -14,16 +14,14 @@ Status as of 2026-06-30:
   be taken, but domain review could not locate Pricing, Terms and Conditions,
   Privacy Policy, and Refund Policy URLs. Commit `d4b89fb` made these links
   explicit in public footers and added `sitemap.xml` and `robots.txt`.
-- Paddle payout setup is paused until Wise Business completes review for
-  KAMTOBE CREATIONS LIMITED and provides usable business account details.
+- Paddle payout settings were updated successfully in Paddle on 2026-06-30
+  using Wise Business GBP wire-transfer details for KAMTOBE CREATIONS LIMITED.
 
 ## Must-Close Reminder
 
-Do not mark payment operations complete until Paddle payouts are finished.
-Payout setup was suspended because Wise Business is reviewing the KAMTOBE
-CREATIONS LIMITED business account. Once Wise approves the account, return to
-Paddle > Payout Settings and enter the Wise business payout details, then save
-and verify the payout configuration.
+Paddle payout settings are saved. Continue to monitor Paddle for payout
+verification or additional review requests before relying on withdrawals as
+fully cleared.
 
 ## Paddle Products
 

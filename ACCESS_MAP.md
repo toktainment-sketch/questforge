@@ -31,7 +31,7 @@ here. Store those in the secrets vault/password manager.
 | Render env vars set | `PADDLE_ENVIRONMENT`, `PADDLE_CLIENT_TOKEN`, `PADDLE_PRICE_STANDARD`, `PADDLE_PRICE_LARGE`, `PADDLE_PRICE_MONTHLY`, `PADDLE_WEBHOOK_SECRET` |
 | Paddle webhook | Active destination: `https://questforgeai.ai/api/paddle/webhook`. Signed live test returned `200 {"received":true}` on 2026-06-30. |
 | Not yet set | Nothing currently known for Paddle checkout/webhook. Payout details remain separate. |
-| Payout status | Paused until Wise Business review completes and business account details are available for KAMTOBE CREATIONS LIMITED. Do not forget to return to Paddle Payout Settings. |
+| Payout status | Paddle payout settings saved successfully on 2026-06-30 using Wise Business GBP wire-transfer details. Monitor Paddle for any further payout verification. |
 
 ## Render
 
@@ -94,7 +94,7 @@ here. Store those in the secrets vault/password manager.
 | Item | Details |
 | --- | --- |
 | Site | https://wise.com |
-| Status from handover | Personal profile created; business onboarding started then abandoned. Not active for QuestForgeAI checkout. |
+| Status from handover | Wise Business approved for KAMTOBE CREATIONS LIMITED. GBP account details were used for Paddle payout settings on 2026-06-30. |
 | Login email | Needs confirmation if revisited. |
 
 ## QuestForgeAI Live Payment State
