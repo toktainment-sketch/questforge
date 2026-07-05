@@ -1,5 +1,15 @@
 # QuestForgeAI, First 50 Buyer Prospect List Strategy
 
+Premium execution note: this file is the first-pass prospecting strategy. For
+the upgraded target-account model, research triggers, role-specific angles,
+LinkedIn decision, compliance guardrails, and proof-asset plan, use:
+
+- `outreach/premium-gtm-research-brief.md`
+- `outreach/premium-outreach-sop.md`
+- `outreach/premium-sales-pack-asset-plan.md`
+- `outreach/gtm-launch-checklist.md`
+- `outreach/premium-prospect-tracker-template.csv`
+
 ## IDEAL CUSTOMER PROFILE (ICP)
 
 **Title:** VP Sales, Head of Revenue, CRO, CEO, CISO
