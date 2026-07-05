@@ -1,6 +1,6 @@
 # QuestForgeAI Paddle Setup
 
-Status as of 2026-06-30:
+Status as of 2026-07-05:
 
 - Paddle vendor dashboard shows "Verification passed".
 - Live Paddle checkout opens successfully from the QuestForgeAI pricing page.
@@ -16,12 +16,17 @@ Status as of 2026-06-30:
   explicit in public footers and added `sitemap.xml` and `robots.txt`.
 - Paddle payout settings were updated successfully in Paddle on 2026-06-30
   using Wise Business GBP wire-transfer details for KAMTOBE CREATIONS LIMITED.
+- Production deploy `e55c532` is live. Public URLs now resolve for Pricing,
+  Terms and Conditions, Privacy Policy, Refund Policy, and Security Overview.
+- Paddle checkout payloads for Standard, Large, and Monthly return live price IDs
+  with HTTPS success and cancel URLs.
+- Public QuestForgeAI support/intake links point to `hello@questforgeai.ai`.
 
 ## Must-Close Reminder
 
-Paddle payout settings are saved. Continue to monitor Paddle for payout
-verification or additional review requests before relying on withdrawals as
-fully cleared.
+Paddle payout settings are saved and visible in the Paddle dashboard. Continue
+to monitor Paddle for payout verification or additional review requests before
+relying on withdrawals as fully cleared.
 
 ## Paddle Products
 
