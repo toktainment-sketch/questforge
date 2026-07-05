@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuestForgeAI | Security Overview</title>
+  <meta name="description" content="How QuestForgeAI handles sensitive security documentation: closed processing pipeline, TLS in transit, enforced deletion, no AI training on client files, and Paddle as Merchant of Record." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://questforgeai.ai/security" />
+  <meta property="og:title" content="QuestForgeAI | Security Overview" />
+  <meta property="og:description" content="A plain-language description of the controls QuestForgeAI actually operates, and the ones we do not claim." />
+  <meta property="og:image" content="https://questforgeai.ai/questforgeai-social-preview.jpg" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>QuestForgeAI</span>
+      </a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/pricing">Pricing</a>
+        <a class="btn" href="/pricing">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="legal-layout">
+    <article class="legal-panel">
+      <p class="section-kicker">Security</p>
+      <h1>Security overview</h1>
+      <p class="updated">Last updated: July 2026</p>
+
+      <p>You are considering sending us the most sensitive paperwork your company produces. This page describes, in plain language, exactly how those files are handled, which controls we operate today, and which claims we deliberately do not make. If anything here is unclear, ask before you buy: <a href="mailto:admin@kamtobecreations.com">admin@kamtobecreations.com</a>.</p>
+
+      <h2>1. Closed pipeline, no public uploads</h2>
+      <ul>
+        <li>There is no public self-service upload box on this website. Files are exchanged only inside a confirmed engagement, after payment and scope are agreed by email.</li>
+        <li>Document processing runs behind operator access controls. The processing endpoints reject any request without a valid operator token, and they are disabled entirely when no operator token is configured.</li>
+        <li>Every engagement is processed in its own isolated working folder with randomized job identifiers. Outputs are never published to a public directory.</li>
+      </ul>
+
+      <h2>2. Encryption and transfer</h2>
+      <ul>
+        <li>All traffic to and from questforgeai.ai is encrypted in transit with TLS.</li>
+        <li>File transfer methods are agreed per engagement. If your team prefers its own secure transfer channel, we work inside it rather than forcing ours.</li>
+        <li>An NDA is available before any file is shared.</li>
+      </ul>
+
+      <h2>3. Retention and deletion</h2>
+      <ul>
+        <li>Uploads and generated outputs are deleted automatically within 30 days. This is an enforced scheduled job, not a manual promise.</li>
+        <li>Earlier deletion is available on written request and is confirmed back to you with the deletion date.</li>
+        <li>Deletion dates are logged per engagement.</li>
+      </ul>
+
+      <h2>4. AI processing without training</h2>
+      <ul>
+        <li>Draft answers are generated with Anthropic's Claude API using only the documents you supply for your engagement.</li>
+        <li>Your documents are not used to train models. API inputs and outputs under Anthropic's commercial terms are not used for model training.</li>
+        <li>Questions your evidence cannot support are flagged for your team instead of guessed. Every package passes a human review before delivery.</li>
+      </ul>
+
+      <h2>5. Payments</h2>
+      <ul>
+        <li>Checkout is operated by Paddle as Merchant of Record. Card details are entered on Paddle's PCI DSS compliant checkout and never touch our servers.</li>
+        <li>Webhook messages from Paddle are cryptographically signature-verified before they are trusted.</li>
+      </ul>
+
+      <h2>6. Sub-processors</h2>
+      <p>We keep the list short on purpose:</p>
+      <ul>
+        <li><strong>Render</strong> for application hosting.</li>
+        <li><strong>Anthropic</strong> for AI draft generation, under commercial API terms with no training on inputs.</li>
+        <li><strong>Paddle</strong> for payments, tax handling, and billing as Merchant of Record.</li>
+      </ul>
+
+      <h2>7. Who you are dealing with</h2>
+      <p>QuestForgeAI is operated by KAMTOBE CREATIONS LIMITED, a company registered in England and Wales, company number 17288786, registered office at 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom. You can verify the registration on the Companies House public register.</p>
+
+      <h2>8. What we do not claim</h2>
+      <p>Trust pages usually stop at the good news. Here is the rest, because your security team will ask anyway:</p>
+      <ul>
+        <li>QuestForgeAI does not currently hold its own SOC 2 or ISO 27001 certification. We are a specialist drafting service, not a certified platform, and we do not imply otherwise.</li>
+        <li>The service is deliberately operated as a controlled, human-reviewed workflow rather than an open self-service tool, precisely because your documents are sensitive.</li>
+        <li>Outputs are drafts. Final review, approval, and submission always remain with your team.</li>
+      </ul>
+
+      <h2>9. Reporting a concern</h2>
+      <p>Security questions or vulnerability reports: <a href="mailto:admin@kamtobecreations.com">admin@kamtobecreations.com</a>. Reports are acknowledged and taken seriously.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Copyright 2026 QuestForgeAI. A KAMTOBE CREATIONS LIMITED product, registered in England and Wales, company no. 17288786.</span>
+      <div class="footer-links">
+        <a href="/pricing">Pricing</a>
+        <a href="/security">Security</a>
+        <a href="/terms">Terms and Conditions</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/refund">Refund Policy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

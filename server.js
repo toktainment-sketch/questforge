@@ -271,6 +271,8 @@ app.get('/terms', (req, res) => res.sendFile(path.join(__dirname, 'public', 'ter
 app.get('/terms.html', (req, res) => res.redirect('/terms'));
 app.get('/refund', (req, res) => res.sendFile(path.join(__dirname, 'public', 'refund.html')));
 app.get('/refund.html', (req, res) => res.redirect('/refund'));
+app.get('/security', (req, res) => res.sendFile(path.join(__dirname, 'public', 'security.html')));
+app.get('/security.html', (req, res) => res.redirect('/security'));
 app.get('/success', (req, res) => res.sendFile(path.join(__dirname, 'public', 'success.html')));
 app.get('/success.html', (req, res) => res.redirect('/success'));
 app.get('/cancel', (req, res) => res.redirect('/pricing'));
@@ -280,7 +282,7 @@ app.get('/app', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.use(express.static('public', { index: false }));
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 const paymentsReady = initPayments();
 

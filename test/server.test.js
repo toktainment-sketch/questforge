@@ -49,8 +49,14 @@ test('server enforces pilot gate and security headers', async () => {
     const pricing = await fetch(`${BASE_URL}/pricing`);
     assert.equal(pricing.status, 200);
     const pricingHtml = await pricing.text();
-    assert.match(pricingHtml, /Pilot pricing/);
+    assert.match(pricingHtml, /Pick a package, pay online/);
     assert.match(pricingHtml, /data-checkout-tier="standard"/);
+
+    const security = await fetch(`${BASE_URL}/security`);
+    assert.equal(security.status, 200);
+    const securityHtml = await security.text();
+    assert.match(securityHtml, /Security overview/);
+    assert.match(securityHtml, /17288786/);
 
     const legacyPricing = await fetch(`${BASE_URL}/pricing.html`, { redirect: 'manual' });
     assert.equal(legacyPricing.status, 302);
