@@ -150,7 +150,7 @@ function sendPilotAccessPage(res) {
     <article class="legal-panel">
     <p class="section-kicker">Private pilot</p>
     <h1>QuestForgeAI is in private pilot mode.</h1>
-    <p>The upload processor is reserved for operator-reviewed concierge engagements. To start a questionnaire, contact <a href="mailto:admin@kamtobecreations.com">admin@kamtobecreations.com</a>.</p>
+    <p>The upload processor is reserved for operator-reviewed concierge engagements. To start a questionnaire, contact <a href="mailto:hello@questforgeai.ai">hello@questforgeai.ai</a>.</p>
     </article>
    </main>
 </body>

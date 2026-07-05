@@ -13,7 +13,8 @@ here. Store those in the secrets vault/password manager.
 | Legal entity | KAMTOBE CREATIONS LIMITED |
 | Company number | 17288786 |
 | Registered address | 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ |
-| Public business email | admin@kamtobecreations.com |
+| Parent company email | admin@kamtobecreations.com |
+| QuestForgeAI support email | hello@questforgeai.ai |
 | Public website | https://questforgeai.ai |
 
 ## Paddle
