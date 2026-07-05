@@ -19,6 +19,7 @@ const {
 } = require('./src/payments');
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3000;
 const UPLOAD_ROOT = path.join(__dirname, 'uploads');
 const OUTPUT_ROOT = path.join(__dirname, 'output');
@@ -182,6 +183,13 @@ function startRetentionCleanup() {
   interval.unref?.();
 }
 
+function getBaseUrl(req) {
+  if (process.env.PUBLIC_BASE_URL) return process.env.PUBLIC_BASE_URL.replace(/\/+$/, '');
+  const forwardedHost = String(req.get('x-forwarded-host') || '').split(',')[0].trim();
+  const host = forwardedHost || req.get('host');
+  return `${req.protocol}://${host}`;
+}
+
 function removeJobFolders(jobId) {
   if (!isSafeJobId(jobId)) return;
   for (const root of [UPLOAD_ROOT, OUTPUT_ROOT]) {
@@ -321,7 +329,7 @@ app.post('/api/checkout', rateLimit('checkout', 20, 15 * 60 * 1000), async (req,
   }
   const { tier, email } = req.body;
   try {
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const baseUrl = getBaseUrl(req);
     const session = await createCheckoutSession(
       tier || 'standard',
       email,

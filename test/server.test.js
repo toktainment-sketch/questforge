@@ -147,3 +147,44 @@ test('server verifies Paddle webhook signatures', async () => {
     await new Promise(resolve => server.once('exit', resolve));
   }
 });
+
+test('checkout success URLs honor forwarded HTTPS protocol', async () => {
+  const server = spawn(process.execPath, ['server.js'], {
+    cwd: process.cwd(),
+    env: {
+      ...process.env,
+      PORT: String(PORT),
+      QUESTFORGE_OPERATOR_TOKEN: TOKEN,
+      ANTHROPIC_API_KEY: '',
+      PADDLE_CLIENT_TOKEN: 'test-client-token',
+      PADDLE_PRICE_STANDARD: 'pri_test_standard',
+      PADDLE_PRICE_LARGE: 'pri_test_large',
+      PADDLE_PRICE_MONTHLY: 'pri_test_monthly',
+      PADDLE_WEBHOOK_SECRET,
+      PUBLIC_BASE_URL: '',
+    },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+
+  try {
+    await waitForHealth();
+
+    const checkout = await fetch(`${BASE_URL}/api/checkout`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-forwarded-proto': 'https',
+        'x-forwarded-host': 'questforgeai.ai',
+      },
+      body: JSON.stringify({ tier: 'standard' }),
+    });
+
+    assert.equal(checkout.status, 200);
+    const payload = await checkout.json();
+    assert.equal(payload.checkout.settings.successUrl, 'https://questforgeai.ai/success');
+    assert.equal(payload.checkout.settings.closeUrl, 'https://questforgeai.ai/cancel');
+  } finally {
+    server.kill('SIGTERM');
+    await new Promise(resolve => server.once('exit', resolve));
+  }
+});

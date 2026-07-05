@@ -81,7 +81,7 @@ function getPublicPricing() {
   }));
 }
 
-function createCheckoutSession(tier, customerEmail, successUrl) {
+function createCheckoutSession(tier, customerEmail, successUrl, closeUrl) {
   const config = getPaymentConfig();
   if (!config.ready) throw new Error('Paddle checkout is not configured yet.');
 
@@ -103,6 +103,7 @@ function createCheckoutSession(tier, customerEmail, successUrl) {
         theme: 'light',
         locale: 'en',
         successUrl: successUrl || undefined,
+        closeUrl: closeUrl || undefined,
       },
     },
   };
