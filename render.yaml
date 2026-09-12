@@ -2,7 +2,7 @@ services:
   - type: web
     name: questforge
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm install
     startCommand: node server.js
     envVars:
