@@ -7,7 +7,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 
 const { parseDocument, extractQuestionsFromExcel, extractQuestionsFromText } = require('./src/documentParser');
-const { processQuestionnaire, generateRebuttalletter } = require('./src/answerEngine');
+const { answerQuestion, processQuestionnaire, generateRebuttalletter } = require('./src/answerEngine');
 const { writeExcelOutput, writeSummaryReport, buildConfidenceReport, buildFlaggedItemsList } = require('./src/reportBuilder');
 const {
   initPayments,
@@ -349,6 +349,49 @@ app.get('/api/verify-payment/:orderId', async (req, res) => {
     res.json(result);
   } catch (err) {
     res.status(410).json({ error: err.message });
+  }
+});
+
+// Browser-first processing endpoints. The files themselves remain in the
+// operator's browser; only the extracted evidence text needed for each draft
+// is sent to the server and onward to the configured AI provider.
+app.post('/api/answer-batch', rateLimit('answer-batch', 180, 60 * 60 * 1000), requirePilotAccess, requireAnthropicKey, async (req, res) => {
+  const questions = Array.isArray(req.body?.questions) ? req.body.questions.slice(0, 5) : [];
+  const knowledgeBase = String(req.body?.knowledgeBase || '').slice(0, 12000);
+  const companyName = String(req.body?.companyName || 'the company').slice(0, 160);
+  if (questions.length === 0 || !knowledgeBase.trim()) {
+    return res.status(400).json({ error: 'Questions and supporting documentation are required.' });
+  }
+
+  const results = await Promise.all(questions.map(async item => {
+    const question = String(item?.question || '').slice(0, 4000);
+    try {
+      return { ...item, ...(await answerQuestion(question, knowledgeBase, companyName)) };
+    } catch (err) {
+      return {
+        ...item,
+        answer: '[ERROR] Failed to generate answer, manual completion required.',
+        confidence: 'LOW',
+        needsReview: true,
+        error: err.message,
+      };
+    }
+  }));
+  res.setHeader('Cache-Control', 'no-store');
+  res.json({ results });
+});
+
+app.post('/api/cover-letter', rateLimit('cover-letter', 30, 60 * 60 * 1000), requirePilotAccess, requireAnthropicKey, async (req, res) => {
+  const companyName = String(req.body?.companyName || 'the company').slice(0, 160);
+  const senderName = String(req.body?.senderName || 'the prospect').slice(0, 160);
+  const autoAnswered = Math.max(0, Number(req.body?.autoAnswered || 0));
+  const needsReview = Math.max(0, Number(req.body?.needsReview || 0));
+  try {
+    const coverLetter = await generateRebuttalletter(companyName, senderName, autoAnswered, needsReview);
+    res.setHeader('Cache-Control', 'no-store');
+    res.json({ coverLetter });
+  } catch (err) {
+    res.status(502).json({ error: err.message });
   }
 });
 

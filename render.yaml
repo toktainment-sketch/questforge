@@ -3,7 +3,7 @@ services:
     name: questforge
     runtime: node
     plan: free
-    buildCommand: npm install
+    buildCommand: npm install && npm run cf:build
     startCommand: node server.js
     envVars:
       - key: ANTHROPIC_API_KEY

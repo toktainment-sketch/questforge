@@ -124,4 +124,4 @@ async function generateRebuttalletter(companyName, questionnaireSender, complete
   return message.content[0].text;
 }
 
-module.exports = { processQuestionnaire, generateRebuttalletter, buildKnowledgeBase };
+module.exports = { answerQuestion, processQuestionnaire, generateRebuttalletter, buildKnowledgeBase };

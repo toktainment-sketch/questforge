@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test ./test/questforge.test.js ./test/server.test.js"
+    "test": "node --test ./test/questforge.test.js ./test/server.test.js",
+    "cf:build": "node ./scripts/build-cloudflare.mjs",
+    "cf:check": "npm run cf:build && wrangler deploy --dry-run",
+    "cf:dev": "npm run cf:build && wrangler dev",
+    "cf:deploy": "npm run cf:build && wrangler deploy"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +22,12 @@
     "mammoth": "^1.12.0",
     "multer": "^2.2.0",
     "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^6.3.289",
     "read-excel-file": "^9.2.0",
     "write-excel-file": "^4.1.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "wrangler": "^4.131.1"
   }
 }

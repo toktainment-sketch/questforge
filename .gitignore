@@ -6,3 +6,6 @@ output/*
 !output/.gitkeep
 test-data/sample-questionnaire.xlsx
 *.log
+public/operator.bundle.js
+public/pdf.worker.min.mjs
+.wrangler/
