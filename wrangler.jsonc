@@ -3,6 +3,18 @@
   "name": "questforge",
   "main": "worker/index.js",
   "compatibility_date": "2026-08-04",
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "questforgeai.ai",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.questforgeai.ai",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
