@@ -32,6 +32,8 @@ app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'no-referrer');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  // HSTS without preload; submitting to the preload list is an owner decision.
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
   res.setHeader(
     'Content-Security-Policy',
     [
@@ -151,7 +153,7 @@ function sendPilotAccessPage(res) {
     <article class="legal-panel">
     <p class="section-kicker">Private pilot</p>
     <h1>QuestForgeAI is in private pilot mode.</h1>
-    <p>The upload processor is reserved for operator-reviewed concierge engagements. To start a questionnaire, contact <a href="mailto:hello@questforgeai.ai">hello@questforgeai.ai</a>.</p>
+    <p>The processing workspace is reserved for operator-reviewed engagements. To start a questionnaire, contact <a href="mailto:hello@questforgeai.ai">hello@questforgeai.ai</a>.</p>
     </article>
    </main>
 </body>
@@ -290,11 +292,19 @@ app.get('/app', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// express.static ignores dot-directories, so serve security.txt explicitly.
+app.get(['/.well-known/security.txt', '/security.txt'], (req, res) => {
+  res.type('text/plain').sendFile(path.join(__dirname, 'public', '.well-known', 'security.txt'), { dotfiles: 'allow' });
+});
+
 app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 const paymentsReady = initPayments();
 
+// Public health is a liveness signal only; configuration detail requires the operator token.
 app.get('/api/health', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  if (!hasPilotAccess(req)) return res.json({ status: 'ok' });
   res.json({
     status: 'ok',
     apiKey: !!process.env.ANTHROPIC_API_KEY,
