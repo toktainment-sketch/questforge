@@ -118,10 +118,24 @@ if (canvas) {
 const checkoutLinks = [...document.querySelectorAll('[data-checkout-tier]')];
 const paymentStatus = document.querySelector('[data-payment-status]');
 
-function setPaymentStatus(message, state) {
+const EMAIL_ORDER_HREF = 'mailto:hello@questforgeai.ai?subject=QuestForgeAI%20order%20by%20email';
+const PAYMENT_CONFIG_TIMEOUT_MS = 8000;
+
+function setPaymentStatus(message, state, withEmailLink) {
   if (!paymentStatus) return;
   paymentStatus.textContent = message;
+  if (withEmailLink) {
+    const link = document.createElement('a');
+    link.href = EMAIL_ORDER_HREF;
+    link.textContent = 'Order by email instead';
+    paymentStatus.append(' ', link, '.');
+  }
   paymentStatus.dataset.state = state || 'idle';
+}
+
+function showEmailFallback() {
+  // Buy buttons keep their mailto: hrefs, so they work without Paddle.
+  setPaymentStatus('Secure checkout is unavailable right now. Every buy button opens an email order instead.', 'fallback', true);
 }
 
 function setCheckoutButtonLoading(link, isLoading) {
@@ -162,17 +176,21 @@ async function setupPaddleCheckout() {
 
   let config;
   try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), PAYMENT_CONFIG_TIMEOUT_MS);
     const response = await fetch('/api/payment-config', {
       headers: { 'Accept': 'application/json' },
+      signal: controller.signal,
     });
+    clearTimeout(timer);
     config = await response.json();
   } catch {
-    setPaymentStatus('Email intake is available while secure checkout finishes connecting.', 'fallback');
+    showEmailFallback();
     return;
   }
 
   if (!config.ready || !config.clientToken || !window.Paddle) {
-    setPaymentStatus('Email intake is available while secure checkout finishes connecting.', 'fallback');
+    showEmailFallback();
     return;
   }
 
@@ -196,14 +214,14 @@ async function setupPaddleCheckout() {
           openCheckout(payload);
           setPaymentStatus('Checkout opened securely through Paddle.', 'ready');
         } catch (error) {
-          setPaymentStatus(error.message || 'Checkout is not available yet. Use email intake for now.', 'error');
+          setPaymentStatus(error.message || 'Checkout is not available right now.', 'error', true);
         } finally {
           setCheckoutButtonLoading(link, false);
         }
       });
     });
   } catch {
-    setPaymentStatus('Email intake is available while secure checkout finishes connecting.', 'fallback');
+    showEmailFallback();
   }
 }
 

@@ -262,6 +262,28 @@ button.btn:hover {
   font-size: 0.88rem;
 }
 
+.hero-note a {
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Primary CTA carries more weight than secondary/ghost actions. */
+.btn.btn-lg {
+  min-height: 48px;
+  padding: 0 22px;
+  font-size: 1.02rem;
+}
+
+.final-cta .btn.ghost {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.final-cta .btn.ghost:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .metric-band {
   background: var(--surface);
   border-bottom: 1px solid var(--line);
@@ -324,7 +346,8 @@ button.btn:hover {
   text-transform: uppercase;
 }
 
-h2 {
+h2,
+.section-head h1 {
   margin: 0;
   color: var(--ink);
   font-size: 2.2rem;
@@ -426,6 +449,72 @@ h2 {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
+}
+
+.sample-card {
+  margin: 0;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.sample-scroll {
+  overflow-x: auto;
+}
+
+.sample-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.sample-table th,
+.sample-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.sample-table th {
+  color: var(--muted-strong);
+  background: var(--bg-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.sample-table td:first-child {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.sample-table td:nth-child(3) {
+  color: var(--muted);
+}
+
+.sample-card figcaption {
+  padding: 12px 16px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.order-fallback {
+  margin: 20px auto 0;
+  max-width: 720px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.order-fallback a,
+.payment-status a {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .status-pill {
@@ -1037,6 +1126,7 @@ h2 {
   }
 
   .site-nav .nav-links a[href="#process"],
+  .site-nav .nav-links a[href="#sample"],
   .site-nav .nav-links a[href="#deliverables"] {
     display: none;
   }
@@ -1061,7 +1151,8 @@ h2 {
     padding: 56px 0;
   }
 
-  h2 {
+  h2,
+  .section-head h1 {
     font-size: 1.65rem;
   }
 

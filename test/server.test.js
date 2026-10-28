@@ -87,6 +87,25 @@ test('server enforces pilot gate and security headers', async () => {
     assert.match(csp, /frame-ancestors 'none'/);
     assert.equal(appWithToken.headers.get('x-frame-options'), 'DENY');
     assert.equal(appWithToken.headers.get('referrer-policy'), 'no-referrer');
+    assert.match(appWithToken.headers.get('strict-transport-security') || '', /max-age=31536000/);
+
+    const publicHealth = await fetch(`${BASE_URL}/api/health`);
+    assert.deepEqual(await publicHealth.json(), { status: 'ok' });
+
+    const operatorHealth = await fetch(`${BASE_URL}/api/health`, { headers: { 'x-questforge-token': TOKEN } });
+    const operatorHealthPayload = await operatorHealth.json();
+    assert.equal(operatorHealthPayload.pilotAccessConfigured, true);
+    assert.equal(typeof operatorHealthPayload.payments, 'boolean');
+
+    const securityTxt = await fetch(`${BASE_URL}/.well-known/security.txt`);
+    assert.equal(securityTxt.status, 200);
+    assert.match(await securityTxt.text(), /Contact: mailto:hello@questforgeai\.ai/);
+
+    const home = await fetch(`${BASE_URL}/`);
+    const homeHtml = await home.text();
+    assert.match(homeHtml, /<link rel="canonical" href="https:\/\/questforgeai\.ai\/" \/>/);
+    assert.match(homeHtml, /application\/ld\+json/);
+    assert.match(homeHtml, /id="sample"/);
 
     const statusNoToken = await fetch(`${BASE_URL}/api/status/job_missing`);
     assert.equal(statusNoToken.status, 401);

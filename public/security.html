@@ -4,12 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QuestForgeAI | Security Overview</title>
-  <meta name="description" content="How QuestForgeAI handles sensitive security documentation: closed processing pipeline, TLS in transit, enforced deletion, no AI training on client files, and Paddle as Merchant of Record." />
+  <meta name="description" content="How QuestForgeAI handles sensitive security documentation: operator-only workspace, TLS in transit, 30-day deletion of shared copies, no AI training on client files, Paddle as Merchant of Record, and the claims we do not make." />
+  <link rel="canonical" href="https://questforgeai.ai/security" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="QuestForgeAI" />
   <meta property="og:url" content="https://questforgeai.ai/security" />
   <meta property="og:title" content="QuestForgeAI | Security Overview" />
   <meta property="og:description" content="A plain-language description of the controls QuestForgeAI actually operates, and the ones we do not claim." />
   <meta property="og:image" content="https://questforgeai.ai/questforgeai-social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QuestForgeAI | Security Overview" />
+  <meta name="twitter:description" content="A plain-language description of the controls QuestForgeAI actually operates, and the ones we do not claim." />
+  <meta name="twitter:image" content="https://questforgeai.ai/questforgeai-social-preview.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://questforgeai.ai/#organization",
+        "name": "QuestForgeAI",
+        "legalName": "KAMTOBE CREATIONS LIMITED",
+        "url": "https://questforgeai.ai/",
+        "image": "https://questforgeai.ai/questforgeai-social-preview.jpg",
+        "email": "hello@questforgeai.ai",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "Companies House company number",
+          "value": "17288786"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "71-75 Shelton Street, Covent Garden",
+          "addressLocality": "London",
+          "postalCode": "WC2H 9JQ",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "hello@questforgeai.ai",
+          "availableLanguage": "en"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://questforgeai.ai/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Security",
+            "item": "https://questforgeai.ai/security"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -22,6 +81,8 @@
       <div class="nav-links" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/pricing">Pricing</a>
+        <a href="/security">Security</a>
+        <a href="/pricing#faq">FAQ</a>
         <a class="btn" href="/pricing">Get started</a>
       </div>
     </div>
@@ -99,9 +160,10 @@
       <div class="footer-links">
         <a href="/pricing">Pricing</a>
         <a href="/security">Security</a>
-        <a href="/terms">Terms and Conditions</a>
+        <a href="/terms">Terms of Service</a>
         <a href="/privacy">Privacy Policy</a>
         <a href="/refund">Refund Policy</a>
+        <a href="mailto:hello@questforgeai.ai">hello@questforgeai.ai</a>
       </div>
     </div>
   </footer>
