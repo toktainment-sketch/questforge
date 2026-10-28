@@ -31,15 +31,15 @@
     <article class="legal-panel">
       <p class="section-kicker">Security</p>
       <h1>Security overview</h1>
-      <p class="updated">Last updated: July 2026</p>
+      <p class="updated">Last updated: September 2026</p>
 
       <p>You are considering sending us the most sensitive paperwork your company produces. This page describes, in plain language, exactly how those files are handled, which controls we operate today, and which claims we deliberately do not make. If anything here is unclear, ask before you buy: <a href="mailto:hello@questforgeai.ai">hello@questforgeai.ai</a>.</p>
 
       <h2>1. Closed pipeline, no public uploads</h2>
       <ul>
-        <li>There is no public self-service upload box on this website. Files are exchanged only inside a confirmed engagement, after payment and scope are agreed by email.</li>
-        <li>Document processing runs behind operator access controls. The processing endpoints reject any request without a valid operator token, and they are disabled entirely when no operator token is configured.</li>
-        <li>Every engagement is processed in its own isolated working folder with randomized job identifiers. Outputs are never published to a public directory.</li>
+        <li>There is no public self-service processing workspace. The private workspace is used only inside a confirmed engagement, after payment and scope are agreed.</li>
+        <li>Document processing runs behind operator access controls. The AI endpoints reject any request without a valid operator token, and they are disabled entirely when no operator token is configured.</li>
+        <li>Selected files are parsed inside the operator's browser. Raw documents and generated spreadsheets are not stored on the hosting server or published to a public directory.</li>
       </ul>
 
       <h2>2. Encryption and transfer</h2>
@@ -51,9 +51,9 @@
 
       <h2>3. Retention and deletion</h2>
       <ul>
-        <li>Uploads and generated outputs are deleted automatically within 30 days. This is an enforced scheduled job, not a manual promise.</li>
-        <li>Earlier deletion is available on written request and is confirmed back to you with the deletion date.</li>
-        <li>Deletion dates are logged per engagement.</li>
+        <li>The private browser workspace does not create server-side copies of selected files or generated spreadsheets.</li>
+        <li>Closing the browser session clears its in-memory working data. Downloaded files remain under the operator's control for mandatory review and delivery.</li>
+        <li>Files separately shared with our human operator through an agreed channel are deleted within 30 days of delivery. Earlier deletion is available on written request.</li>
       </ul>
 
       <h2>4. AI processing without training</h2>
@@ -72,7 +72,7 @@
       <h2>6. Sub-processors</h2>
       <p>We keep the list short on purpose:</p>
       <ul>
-        <li><strong>Render</strong> for application hosting.</li>
+        <li><strong>Cloudflare</strong> for website delivery and secure API routing.</li>
         <li><strong>Anthropic</strong> for AI draft generation, under commercial API terms with no training on inputs.</li>
         <li><strong>Paddle</strong> for payments, tax handling, and billing as Merchant of Record.</li>
       </ul>
